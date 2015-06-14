@@ -1,6 +1,7 @@
 import pyexcel as pe
 from _compact import BytesIO, PY2
 
+
 FILE_TYPE_MIME_TABLE = {
     "csv": "text/csv",
     "tsv": "text/tab-separated-values",

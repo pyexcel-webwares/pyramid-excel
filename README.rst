@@ -10,7 +10,7 @@ pyramid-excel - Let you focus on data, instead of file formats
 
 **pyramid-excel** is based on `pyexcel <https://github.com/chfw/pyexcel>`_ and makes it easy
 to consume/produce information stored in excel files over HTTP protocol as well as on file
-system. This library can turn the excel data into Pythonic a list of lists, a list of
+system. This library can turn the excel data into a list of lists, a list of
 records(dictionaries), dictionaries of lists. And vice versa. Hence it lets you focus on
 data in Pyramid based web development, instead of file formats.
 
@@ -33,14 +33,15 @@ The highlighted features are:
 Available Plugins
 =================
 
-================ ========================================================================
-Plugins          Supported file formats                                      
-================ ========================================================================
+================ ============================================
+Plugins          Supported file formats                      
+================ ============================================
 `pyexcel-xls`_   xls, xlsx(r), xlsm(r)
 `pyexcel-xlsx`_  xlsx
-`pyexcel-ods`_   ods (python 2.6, 2.7)                                       
-`pyexcel-ods3`_  ods (python 2.7, 3.3, 3.4)                                  
-================ ========================================================================
+`pyexcel-ods`_   ods (python 2.6, 2.7)                       
+`pyexcel-ods3`_  ods (python 2.7, 3.3, 3.4)
+`pyexcel-text`_  (write only) json, rst, mediawiki, etc.
+================ ============================================
 
 .. _pyexcel-xls: https://github.com/chfw/pyexcel-xls
 .. _pyexcel-xlsx: https://github.com/chfw/pyexcel-xlsx
