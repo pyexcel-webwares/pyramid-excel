@@ -1,5 +1,5 @@
 import pyexcel as pe
-from _compact import BytesIO
+from _compact import BytesIO, PY2
 
 FILE_TYPE_MIME_TABLE = {
     "csv": "text/csv",
@@ -27,14 +27,19 @@ class TestExcelResponse:
     def test_download(self):
         for upload_file_type in FILE_TYPE_MIME_TABLE.keys():
             file_name = 'test.%s' % upload_file_type
-            for download_file_type in ['tsv']:#FILE_TYPE_MIME_TABLE.keys():
+            for download_file_type in FILE_TYPE_MIME_TABLE.keys():
                 print("Uploading %s Downloading %s" % (upload_file_type, download_file_type))
-                io = BytesIO()
+                io = pe.get_io(upload_file_type)
                 sheet = pe.Sheet(self.data)
                 sheet.save_to_memory(upload_file_type, io)
                 io.seek(0)
+                if not PY2:
+                    if isinstance(io, BytesIO):
+                        content = io.getvalue()
+                    else:
+                        content = io.getvalue().encode('utf-8')
                 response = self.app.post('/switch/%s' % download_file_type,
-                                         upload_files = [('file', file_name, io.getvalue())],
+                                         upload_files = [('file', file_name, content)],
                                          )
                 assert response.content_type == FILE_TYPE_MIME_TABLE[download_file_type]
                 sheet = pe.get_sheet(file_type=download_file_type, file_content=response.body)
