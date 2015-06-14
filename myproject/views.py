@@ -2,7 +2,7 @@ from pyramid.view import view_config
 from pyramid.response import Response
 import pyexcel.ext.xls
 import pyexcel.ext.xlsx
-import pyexcel.ext.ods
+import pyexcel.ext.ods3
 import pyexcel.ext.webio as webio
 
 @view_config(route_name='home', renderer='templates/mytemplate.pt')
