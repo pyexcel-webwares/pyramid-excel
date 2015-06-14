@@ -1,0 +1,10 @@
+pyramid
+nose
+rednose
+nose-cov
+python-coveralls
+coverage
+pyexcel-xls
+pyexcel-xlsx
+webtest
+lxml
