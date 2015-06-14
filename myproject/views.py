@@ -18,7 +18,6 @@ def switch(request):
 def upload_view(request):
     if request.method == 'POST':
         data = request.get_array(field_name='file')
-        print data
         return webio.make_response_from_array(data, 'xls')
     x='''
     <!doctype html>
