@@ -38,6 +38,8 @@ class TestExcelResponse:
                         content = io.getvalue()
                     else:
                         content = io.getvalue().encode('utf-8')
+                else:
+                    content = io.getvalue()
                 response = self.app.post('/switch/%s' % download_file_type,
                                          upload_files = [('file', file_name, content)],
                                          )
