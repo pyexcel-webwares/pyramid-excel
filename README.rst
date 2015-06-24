@@ -8,6 +8,9 @@ pyramid-excel - Let you focus on data, instead of file formats
 .. image:: https://coveralls.io/repos/chfw/pyramid-excel/badge.svg
    :target: https://coveralls.io/r/chfw/pyramid-excel 
 
+.. image:: https://readthedocs.org/projects/pyramid-excel/badge/?version=latest
+    :target: http://pyramid-excel.readthedocs.org/en/latest/
+	     
 **pyramid-excel** is based on `pyexcel <https://github.com/chfw/pyexcel>`_ and makes it easy
 to consume/produce information stored in excel files over HTTP protocol as well as on file
 system. This library can turn the excel data into a list of lists, a list of
@@ -74,15 +77,15 @@ Setup
 ====================
 
 Once the pyramid_excel is installed, you must use the config.include mechanism to include
-it into your Pyramid project's configuration:
+it into your Pyramid project's configuration::
 
-config = Configurator(.....)
-config.include('pyramid_excel')
+    config = Configurator(.....)
+    config.include('pyramid_excel')
 
 Alternately, you may activate the extension by changing your application's .ini file by
-adding it to the pyramid.includes list:
+adding it to the pyramid.includes list::
 
-pyramid.includes = pyramid_excel
+    pyramid.includes = pyramid_excel
 
 
 License

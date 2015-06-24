@@ -14,17 +14,8 @@ def switch(request):
     sheet = request.get_sheet(field_name='file')
     return webio.make_response(sheet, request.matchdict.get('file_type', 'csv'))
 
-@view_config(route_name='upload')
+@view_config(route_name='upload', renderer='templates/upload_form.pt')
 def upload_view(request):
     if request.method == 'POST':
         data = request.get_array(field_name='file')
         return webio.make_response_from_array(data, 'xls')
-    x='''
-    <!doctype html>
-    <title>Upload an excel file</title>
-    <h1>Excel file upload (csv, tsv, csvz, tsvz only)</h1>
-    <form action="" method=post enctype=multipart/form-data><p>
-    <input type=file name=file><input type=submit value=Upload>
-    </form>
-    '''
-    return Response(x)
