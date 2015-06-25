@@ -1,6 +1,6 @@
-============================================================
+=================================================================
 pyramid-excel - Let you focus on data, instead of file formats
-============================================================
+=================================================================
 
 .. image:: https://api.travis-ci.org/chfw/pyramid-excel.svg?branch=master
    :target: http://travis-ci.org/chfw/pyramid-excel
@@ -59,7 +59,7 @@ Known constraints
 Fonts, colors and charts are not supported. 
 
 Installation
-============
+==============
 You can install it via pip::
 
     $ pip install pyramid-excel
@@ -95,6 +95,6 @@ New BSD License
 
 
 Dependencies
-=============
+===============
 
-* pyexcel-webio
+* pyexcel-webio >= 0.0.3

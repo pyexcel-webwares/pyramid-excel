@@ -71,6 +71,60 @@ adding it to the pyramid.includes list::
     pyramid.includes = pyramid_excel
 
 
+Tutorial
+------------
+
+In order to dive in pyramid-excel and get hands-on experience quickly, the test application for pyramid-excel will be introduced here. So, it is advisable that you should check out the code from `github <https://github.com/chfw/pyramid-excel>`_ ::
+
+    git clone https://github.com/chfw/pyramid-excel.git
+
+
+The test application is written according to the tutorial here.
+
+Once you have the code, please change to django-excel directory and then install all dependencies::
+
+    $ cd pyramid-excel
+    $ pip install -r requirements.txt
+    $ pip install -r test_requirements.txt
+
+Then run the test application::
+
+    $ pserve development.ini
+    Starting server in PID 9852.
+    serving on http://127.0.0.1:5000
+
+Handle excel file upload and download
+++++++++++++++++++++++++++++++++++++++
+
+This example shows how to process uploaded excel file and how to make data download as an excel file. Open your browser and visit http://localhost:8000/polls/upload, you shall see this upload form:
+
+.. image:: _static/upload-form.png
+
+please upload an xls file and you would get this dialog:
+
+.. image:: _static/download-dialog.png
+
+Please open the file `myproject/views.py <https://github.com/chfw/pyramid-excel/blob/master/myproject/views.py#L17>`_ and focus on the following code section::
+
+    @view_config(route_name='upload', renderer='templates/upload_form.pt')
+    def upload_view(request):
+        if request.method == 'POST':
+            data = request.get_array(field_name='file')
+            return excel.make_response_from_array(data, 'xls')
+
+By default, the GET request will be served with upload_form.pt. Once an excel file is uploaded, this library kicks in and help you get the data as an array. Then you can make an excel file as download by using make_response_from_array.
+
+Please notice that in order to support 'xls' file format, you have to intall an extra plugin::
+
+    $ pip install pyexcel-xls
+
+and import it::
+
+    import pyexcel.ext.xls
+
+Where does 'excel' come from? It was imported::
+
+    import pyramid_excel as excel
 
 
 All supported data types

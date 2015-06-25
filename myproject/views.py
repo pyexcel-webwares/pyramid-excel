@@ -3,7 +3,7 @@ from pyramid.response import Response
 import pyexcel.ext.xls
 import pyexcel.ext.xlsx
 import pyexcel.ext.ods3
-import pyexcel.ext.webio as webio
+import pyramid_excel as excel
 
 @view_config(route_name='home', renderer='templates/mytemplate.pt')
 def my_view(request):
@@ -18,4 +18,4 @@ def switch(request):
 def upload_view(request):
     if request.method == 'POST':
         data = request.get_array(field_name='file')
-        return webio.make_response_from_array(data, 'xls')
+        return excel.make_response_from_array(data, 'xls')
