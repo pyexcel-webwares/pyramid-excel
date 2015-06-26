@@ -12,7 +12,7 @@ def my_view(request):
 @view_config(route_name='switch')
 def switch(request):
     sheet = request.get_sheet(field_name='file')
-    return webio.make_response(sheet, request.matchdict.get('file_type', 'csv'))
+    return excel.make_response(sheet, request.matchdict.get('file_type', 'csv'))
 
 @view_config(route_name='upload', renderer='templates/upload_form.pt')
 def upload_view(request):
