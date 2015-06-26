@@ -71,32 +71,81 @@ adding it to the pyramid.includes list::
     pyramid.includes = pyramid_excel
 
 
-Tutorial
+Quick Start
 ------------
 
-In order to dive in pyramid-excel and get hands-on experience quickly, the test application for pyramid-excel will be introduced here. So, it is advisable that you should check out the code from `github <https://github.com/chfw/pyramid-excel>`_ ::
+Here is the quick demonstration code for pyramid-excel::
 
-    git clone https://github.com/chfw/pyramid-excel.git
+    from wsgiref.simple_server import make_server
+    from pyramid.config import Configurator
+    from pyramid.response import Response
+    from pyramid.view import view_config
+    import pyramid_excel as excel
+    import pyexcel.ext.xls # pip install pyexcel-xls
+    
+    
+    upload_form = """
+    <!doctype html>
+    <title>Upload an excel file</title>
+    <h1>Excel file upload</h1>
+    <form action="" method=post enctype=multipart/form-data><p>
+    <input type=file name=file><input type=submit value=Upload>
+    </form>
+    """
+    
+    
+    @view_config(route_name='upload')
+    def upload_view(request):
+        if request.method == 'POST':
+            data = request.get_array(field_name='file')
+            return excel.make_response_from_array(data, 'xls')
+        return Response(upload_form)
+    
+    
+    if __name__ == '__main__':
+        config = Configurator()
+        config.include('pyramid_excel')
+        config.add_route('upload', '/upload')
+        config.scan()
+        app = config.make_wsgi_app()
+        server = make_server('0.0.0.0', 5000, app)
+        print("Listening on 0.0.0.0:5000")
+        server.serve_forever()
 
+Before you start the server, let's install a plugin to support xls file format::
 
-The test application is written according to the tutorial here.
+    $ pip install pyexcel-xls
 
-Once you have the code, please change to django-excel directory and then install all dependencies::
+And you can start the tiny server by this command, assuming you have save it as tiny_server.py::
 
-    $ cd pyramid-excel
-    $ pip install -r requirements.txt
-    $ pip install -r test_requirements.txt
+    $ python tiny_server.py
+    Listening on 0.0.0.0:5000
 
-Then run the test application::
+.. note::
+    Alternatively, you can check out the code from `github <https://github.com/chfw/pyramid-excel>`_ ::
+    
+        git clone https://github.com/chfw/pyramid-excel.git
 
-    $ pserve development.ini
-    Starting server in PID 9852.
-    serving on http://127.0.0.1:5000
+    The test application for pyramid-excel is a fully fledged site according to the tutorial here.
+    
+    Once you have the code, please change to pyramid-excel directory and then install all dependencies::
+    
+        $ cd pyramid-excel
+        $ pip install -r requirements.txt
+        $ pip install -r test_requirements.txt
+    
+    Then run the test application::
+    
+        $ pserve development.ini
+        Starting server in PID 9852.
+        serving on http://127.0.0.1:5000
+
 
 Handle excel file upload and download
 ++++++++++++++++++++++++++++++++++++++
 
-This example shows how to process uploaded excel file and how to make data download as an excel file. Open your browser and visit http://localhost:8000/polls/upload, you shall see this upload form:
+This example shows how to process uploaded excel file and how to make data download as an excel file.
+Open your browser and visit http://localhost:5000/upload, you shall see this upload form:
 
 .. image:: _static/upload-form.png
 
@@ -104,27 +153,18 @@ please upload an xls file and you would get this dialog:
 
 .. image:: _static/download-dialog.png
 
-Please open the file `myproject/views.py <https://github.com/chfw/pyramid-excel/blob/master/myproject/views.py#L17>`_ and focus on the following code section::
+Please focus on the following code section::
 
-    @view_config(route_name='upload', renderer='templates/upload_form.pt')
+    @view_config(route_name='upload')
     def upload_view(request):
         if request.method == 'POST':
             data = request.get_array(field_name='file')
             return excel.make_response_from_array(data, 'xls')
+        return Response(upload_form)
 
-By default, the GET request will be served with upload_form.pt. Once an excel file is uploaded, this library kicks in and help you get the data as an array. Then you can make an excel file as download by using make_response_from_array.
-
-Please notice that in order to support 'xls' file format, you have to intall an extra plugin::
-
-    $ pip install pyexcel-xls
-
-and import it::
-
-    import pyexcel.ext.xls
-
-Where does 'excel' come from? It was imported::
-
-    import pyramid_excel as excel
+By default, the GET request will be served with upload_form. Once an excel file is uploaded,
+this library kicks in and help you get the data as an array. Then you can make an excel
+file as download by using make_response_from_array.
 
 
 All supported data types
@@ -148,7 +188,7 @@ a database query sets                                                           
 
 See more examples of the data structures in :ref:`pyexcel documentation<pyexcel:a-list-of-data-structures>`
 
-If you would like to expand the list of supported excel file formats (see :ref:`file-format-list`) for your own application, you could include one or all of the following import lines right after **Flask-Excel** is imported::
+If you would like to expand the list of supported excel file formats (see :ref:`file-format-list`) for your own application, you could include one or all of the following import lines::
 
     import pyexcel.ext.xls
     import pyexcel.ext.xlsx
@@ -157,11 +197,11 @@ If you would like to expand the list of supported excel file formats (see :ref:`
 API Reference
 ---------------
 
-**pyramid-excel** attaches **pyexcel** functions to **InMemoryUploadedFile** and **TemporaryUploadedFile**.
+**pyramid-excel** attaches **pyexcel** functions to pyramid's **Request** class.
 
 .. module:: pyramid_excel
 
-.. autoclass:: ExcelMixin
+.. autoclass:: ExcelRequestFactory
 
    .. method:: get_sheet(sheet_name=None, **keywords)
 
