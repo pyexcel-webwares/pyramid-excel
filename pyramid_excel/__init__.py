@@ -23,6 +23,20 @@ class ExcelRequestFactory(webio.ExcelInputInMultiDict, Request):
         extension = filename.split(".")[1]
         return extension, filehandle.file
 
+    def save_book_to_database(self, auto_commit=False,
+                              **keywords):
+        webio.ExcelInputInMultiDict.save_book_to_database(
+            self,
+            auto_commit=auto_commit,
+            **keywords)
+    def save_to_database(
+            self,
+            auto_commit=False,
+            **keywords):
+        webio.ExceInputInMultiDict.save_to_database(
+            self,
+            auto_commit=auto_commit,
+            **keywords)
 
 # set up webio
 webio.ExcelResponse = Response
