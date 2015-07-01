@@ -23,6 +23,7 @@ def upload_view(request):
         return excel.make_response_from_array(data, 'xls')
     return Response(upload_form)
 
+# insert database related code here
 
 if __name__ == '__main__':
     config = Configurator()

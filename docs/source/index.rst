@@ -44,7 +44,7 @@ The highlighted features are:
 .. _ods3: https://github.com/chfw/pyexcel-ods3
 .. _text: https://github.com/chfw/pyexcel-text
 
-This library makes infomation processing involving various excel files as easy as processing array, dictionary when processing file upload/download, data import into and export from SQL databases, information analysis and persistence. It uses **pyexcel** and its plugins: 1) to provide one uniform programming interface to handle csv, tsv, xls, xlsx, xlsm and ods formats. 2) to provide one-stop utility to import the data in uploaded file into a database and to export tables in a database as excel files for file download 3) to provide the same interface for information persistence at server side: saving a uploaded excel file to and loading a saved excel file from file system.
+This library makes infomation processing involving various excel files as easy as processing array, dictionary. The information processin job includes file upload/download, data import into and export from SQL databases, information analysis and persistence. It uses **pyexcel** and its plugins: 1) to provide one uniform programming interface to handle csv, tsv, xls, xlsx, xlsm and ods formats. 2) to provide one-stop utility to import the data in uploaded file into a database and to export tables in a database as excel files for file download 3) to provide the same interface for information persistence at server side: saving a uploaded excel file to and loading a saved excel file from file system.
 
 
 Installation
@@ -55,7 +55,8 @@ You can install it via github::
     $ cd pyramid-excel
     $ python setup.py install
 
-Installation of individual plugins , please refer to individual plugin page.
+Installation of individual file format plugins , please refer to individual plugin page.
+
 
 Setup
 ====================
@@ -70,9 +71,21 @@ adding it to the pyramid.includes list::
 
     pyramid.includes = pyramid_excel
 
+Plugins
+=======================
+
+If you expand the list of supported excel file formats (see :ref:`file-format-list`) for your own application,
+you have install them and import them. For example, to have 'xls' file support, you have to do:
+
+    $ pip install pyexcel-xls
+
+and in the view where xls file processing happens, you have to import it like the following:
+
+    import pyexcel.ext.xls
+
 
 Quick Start
-------------
+==============
 
 Here is the quick demonstration code for pyramid-excel::
 
@@ -167,6 +180,145 @@ this library kicks in and help you get the data as an array. Then you can make a
 file as download by using make_response_from_array.
 
 
+Data import and export
+-----------------------------
+
+Continue with the previous example, the data import and export will be explained. You can copy
+the following code in their own appearing sequence and paste them after the place holder::
+
+    # insert database related code here
+
+Alernatively, you can find the complete example on `github <https://github.com/chfw/pyramid-excel/blob/master/examples/database_example.py>`_
+
+Now let's add the following imports first::
+
+    from sqlalchemy import (
+        Column,
+        Index,
+        Integer,
+        Text,
+        String,
+        ForeignKey,
+        DateTime,
+        create_engine
+        )
+    
+    from sqlalchemy.ext.declarative import declarative_base
+    from sqlalchemy.orm import relationship, backref
+    from sqlalchemy.orm import (
+        scoped_session,
+        sessionmaker,
+        )
+    
+    from zope.sqlalchemy import ZopeTransactionExtension
+    
+    DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
+    Base = declarative_base()
+
+And paste some models::
+
+    class Post(Base):
+        __tablename__ = 'post'
+        id = Column(Integer, primary_key=True)
+        title = Column(String(80))
+        body = Column(Text)
+        pub_date = Column(DateTime)
+    
+        category_id = Column(Integer, ForeignKey('category.id'))
+        category = relationship('Category',
+            backref=backref('posts', lazy='dynamic'))
+    
+        def __init__(self, title, body, category, pub_date=None):
+            self.title = title
+            self.body = body
+            if pub_date is None:
+                pub_date = datetime.utcnow()
+            self.pub_date = pub_date
+            self.category = category
+    
+        def __repr__(self):
+            return '<Post %r>' % self.title
+    
+    
+    class Category(Base):
+        __tablename__ = 'category'
+        id = Column(Integer, primary_key=True)
+        name = Column(String(50))
+    
+        def __init__(self, name):
+            self.name = name
+    
+        def __repr__(self):
+            return '<Category %r>' % self.name
+
+
+Now let us create the tables in the database::
+
+    def init_db():
+        engine = create_engine('sqlite:///tmp.db')
+        DBSession.configure(bind=engine)
+        Base.metadata.drop_all(engine)
+        Base.metadata.create_all(engine)
+
+And make sure we call init_db in main::
+
+    if __name__ == '__main__':
+        config = Configurator()
+        config.include('pyramid_excel')
+        config.add_route('upload', '/upload')
+        config.add_route('import', '/import')
+        config.add_route('export', '/export')
+        config.scan()
+        init_db() # <-------
+        app = config.make_wsgi_app()
+        server = make_server('0.0.0.0', 5000, app)
+        print("Listening on 0.0.0.0:5000")
+        server.serve_forever()
+  
+
+Write up the view functions for data import::
+
+    @view_config(route_name="import")
+    def doimport(request):
+        if request.method == 'POST':
+            def category_init_func(row):
+                c = Category(row['name'])
+                c.id = row['id']
+                return c
+            def post_init_func(row):
+                c = DBSession.query(Category).filter_by(name=row['category']).first()
+                p = Post(row['title'], row['body'], c, row['pub_date'])
+                return p
+            request.save_book_to_database(field_name='file', session=DBSession,
+                                          tables=[Category, Post],
+                                          initializers=[category_init_func, post_init_func])
+            return Response("Saved")
+        return Response(upload_form)
+    
+
+
+Write up the view function for data export::
+
+    @view_config(route_name="export")
+    def doexport(request):
+        return excel.make_response_from_tables(DBSession, [Category, Post], "xls")
+
+Then run the example again. Visit http://localhost:5000/import and upload `sample-data.xls <https://github.com/chfw/pyramid-excel/blob/master/sample-data.xls>`_ . Then visit http://localhost:5000/export to download the data back.
+
+Export filtered query sets
+-----------------------------
+
+Previous example shows you how to dump one or more tables over http protocol. Hereby, let's look at how to turn a query sets into an excel sheet. You can
+pass a query sets and an array of selected column names to :meth:`~pyramid_excel.make_response_from_query_sets` and generate an excel sheet from it::
+
+    @view_config(route_name="custom_export")
+    def docustomexport(request):
+        query_sets = DBSession.query(Category).filter_by(id=1).all()
+        column_names = ['id', 'name']
+        return excel.make_response_from_query_sets(query_sets, column_names, "xls")
+
+Then visit http://localhost:5000/custom_export to download the data
+
 All supported data types
 --------------------------
 
@@ -188,11 +340,6 @@ a database query sets                                                           
 
 See more examples of the data structures in :ref:`pyexcel documentation<pyexcel:a-list-of-data-structures>`
 
-If you would like to expand the list of supported excel file formats (see :ref:`file-format-list`) for your own application, you could include one or all of the following import lines::
-
-    import pyexcel.ext.xls
-    import pyexcel.ext.xlsx
-    import pyexcel.ext.ods
 
 API Reference
 ---------------

@@ -8,3 +8,4 @@ pyexcel-xls
 pyexcel-xlsx
 webtest
 lxml
+pyramid>=1.5.7
