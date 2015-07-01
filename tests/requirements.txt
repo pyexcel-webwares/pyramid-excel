@@ -1,4 +1,3 @@
-pyramid
 nose
 rednose
 nose-cov
