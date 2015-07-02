@@ -44,7 +44,7 @@ The highlighted features are:
 .. _ods3: https://github.com/chfw/pyexcel-ods3
 .. _text: https://github.com/chfw/pyexcel-text
 
-This library makes infomation processing involving various excel files as easy as processing array, dictionary. The information processin job includes file upload/download, data import into and export from SQL databases, information analysis and persistence. It uses **pyexcel** and its plugins: 1) to provide one uniform programming interface to handle csv, tsv, xls, xlsx, xlsm and ods formats. 2) to provide one-stop utility to import the data in uploaded file into a database and to export tables in a database as excel files for file download 3) to provide the same interface for information persistence at server side: saving a uploaded excel file to and loading a saved excel file from file system.
+This library makes infomation processing involving various excel files as easy as processing array and dictionary. The information processing job includes file upload/download, data import into and export from SQL databases, information analysis and persistence. It uses **pyexcel** and its plugins: 1) to provide one uniform programming interface to handle csv, tsv, xls, xlsx, xlsm and ods formats. 2) to provide one-stop utility to import the data in uploaded file into a database and to export tables in a database as excel files for file download 3) to provide the same interface for information persistence at server side: saving a uploaded excel file to and loading a saved excel file from file system.
 
 
 Installation

@@ -3,6 +3,7 @@ from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.view import view_config
 import pyramid_excel as excel
+import datetime
 import pyexcel.ext.xls
 
 

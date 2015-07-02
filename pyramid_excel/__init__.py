@@ -33,7 +33,7 @@ class ExcelRequestFactory(webio.ExcelInputInMultiDict, Request):
             self,
             auto_commit=False,
             **keywords):
-        webio.ExceInputInMultiDict.save_to_database(
+        webio.ExcelInputInMultiDict.save_to_database(
             self,
             auto_commit=auto_commit,
             **keywords)
