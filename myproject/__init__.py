@@ -7,7 +7,6 @@ from .models import (
     )
 
 
-
 def main(global_config, **settings):
     """ This function returns a Pyramid WSGI application.
     """
@@ -26,3 +25,7 @@ def main(global_config, **settings):
     config.add_route('upload_categories', '/upload/categories')
     config.scan()
     return config.make_wsgi_app()
+
+
+def close():
+    DBSession.close()

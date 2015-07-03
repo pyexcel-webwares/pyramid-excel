@@ -4,11 +4,15 @@ from _compact import BytesIO, PY2
 
 
 class TestSheet:
-    def setUp(self):
+    def init(self):
         from myproject import main
         from webtest import TestApp
         self.raw_app = main({})
         self.app = TestApp(self.raw_app)
+
+    def done(self):
+        from myproject import close
+        close()
 
     def test_single_sheet_file(self):
         array = [
@@ -16,7 +20,8 @@ class TestSheet:
             [1, "News"],
             [2, "Sports"]
         ]
-        for upload_file_type in ['xls', 'ods']:
+        for upload_file_type in ['ods', 'xls']:
+            self.init()
             print("Uploading %s" % upload_file_type)
             file_name = "test.%s" % upload_file_type
             io = pe.save_as(array=array, dest_file_type=upload_file_type)
@@ -30,8 +35,8 @@ class TestSheet:
             response = self.app.post('/upload/categories',
                                      upload_files=[('file', file_name, content)])
             ret = pe.get_array(file_type="xls", file_content=response.body)
-            print(ret)
             assert array == ret
+            self.done()
 
 
 class TestBook:
@@ -68,7 +73,6 @@ class TestBook:
             response = self.app.post('/upload/all',
                                      upload_files=[('file', file_name, content)])
             ret = pe.get_book_dict(file_type="xls", file_content=response.body)
-            print(ret)
             assert data['Category'] == ret['category']
             sheet = pe.Sheet(data['Post'], name_columns_by_row=0)
             sheet.column.format("pub_date", lambda d: d.isoformat())
@@ -78,3 +82,6 @@ class TestBook:
                     continue
                 assert sheet.column[key] == sheet2.column[key]
             assert sheet2.column['category_id'] == [1, 2]
+    def tearDown(self):
+        from myproject import close
+        close()
