@@ -1,4 +1,6 @@
 SQLAlchemy
+transaction
+zope.sqlalchemy
 nose
 rednose
 nose-cov
