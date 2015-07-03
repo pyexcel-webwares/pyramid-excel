@@ -9,8 +9,7 @@ with open("README.rst", 'r') as readme:
     README_txt = readme.read()
 
 dependencies = [
-    'pyexcel>=0.1.5',
-    'pyexcel-webio>=0.0.2'
+    'pyexcel-webio>=0.0.3'
 ]
 
 setup(
