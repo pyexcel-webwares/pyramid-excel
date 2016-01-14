@@ -8,6 +8,7 @@ python-coveralls
 coverage
 pyexcel-xls
 pyexcel-xlsx
+pyexcel-ods3
 webtest
 lxml
-pyramid>=1.5.7
+
