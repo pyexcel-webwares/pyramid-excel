@@ -438,28 +438,28 @@ Response methods
       :param array: a list of lists
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-      :param file_name: same as :meth:`~flask_excel.make_response`
+      :param file_name: same as :meth:`~pyramid_excel.make_response`
 
    .. method:: make_response_from_dict(dict, file_type, status=200, file_name=None)
 
       :param dict: a dictinary of lists
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-      :param file_name: same as :meth:`~flask_excel.make_response`
+      :param file_name: same as :meth:`~pyramid_excel.make_response`
 
    .. method:: make_response_from_records(records, file_type, status=200, file_name=None)
 
       :param records: a list of dictionaries
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-      :param file_name: same as :meth:`~flask_excel.make_response`
+      :param file_name: same as :meth:`~pyramid_excel.make_response`
                 
    .. method:: make_response_from_book_dict(book_dict, file_type, status=200, file_name=None)
 
       :param book_dict: a dictionary of two dimensional arrays
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-      :param file_name: same as :meth:`~flask_excel.make_response`
+      :param file_name: same as :meth:`~pyramid_excel.make_response`
 
    .. method:: make_response_from_a_table(model, file_type status=200, file_name=None)
 
@@ -479,12 +479,12 @@ Response methods
       :param column_names: a nominated column names. It could not be None, otherwise no data is returned.
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-      :param file_name: same as :meth:`~flask_excel.make_response`
+      :param file_name: same as :meth:`~pyramid_excel.make_response`
 
    .. method:: make_response_from_tables(session, tables, file_type status=200, file_name=None)
 
       Produce a multiple sheet Excel book of *file_type*. It becomes the same
-      as :meth:`~flask_excel.make_response_from_a_table` if you pass *tables*
+      as :meth:`~pyramid_excel.make_response_from_a_table` if you pass *tables*
       with an array that has a single table
       
       :param session: SQLAlchemy session
