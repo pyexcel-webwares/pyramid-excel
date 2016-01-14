@@ -346,9 +346,8 @@ API Reference
 
 **pyramid-excel** attaches **pyexcel** functions to pyramid's **Request** class.
 
-.. module:: pyramid_excel
-
-.. autoclass:: ExcelRequestFactory
+ExcelRequestFactory
+**********************
 
    .. method:: get_sheet(field_name=None, sheet_name=None, **keywords)
 
@@ -415,9 +414,7 @@ API Reference
 
 
 Response methods
------------------
-
-.. automodule:: pyramid_excel
+**********************
 
    .. method:: make_response(pyexcel_instance, file_type, status=200, file_name=None)
 
@@ -464,8 +461,15 @@ Response methods
       :param status: same as :meth:`~pyramid_excel.make_response`
       :param file_name: same as :meth:`~flask_excel.make_response`
 
-   .. autofunction:: make_response_from_a_table(model, file_type status=200, file_name=None)
+   .. method:: make_response_from_a_table(model, file_type status=200, file_name=None)
 
+      Produce a single sheet Excel book of *file_type*
+
+      :param session: SQLAlchemy session
+      :param table: a SQLAlchemy table
+      :param file_type: same as :meth:`~pyramid_excell.make_response`
+      :param status: same as :meth:`~pyramid_excel.make_response`
+      :param file_name: same as :meth:`~pyramid_excel.make_response`
 
    .. method:: make_response_from_query_sets(query_sets, column_names, file_type status=200, file_name=None)
 
@@ -477,7 +481,17 @@ Response methods
       :param status: same as :meth:`~pyramid_excel.make_response`
       :param file_name: same as :meth:`~flask_excel.make_response`
 
-   .. autofunction:: make_response_from_tables(models, file_type status=200, file_name=None)
+   .. method:: make_response_from_tables(session, tables, file_type status=200, file_name=None)
+
+      Produce a multiple sheet Excel book of *file_type*. It becomes the same
+      as :meth:`~flask_excel.make_response_from_a_table` if you pass *tables*
+      with an array that has a single table
+      
+      :param session: SQLAlchemy session
+      :param tables: SQLAlchemy tables
+      :param file_type: same as :meth:`~pyramid_excel.make_response`
+      :param status: same as :meth:`~pyramid_excel.make_response`
+      :param file_name: same as :meth:`~pyramid_excel.make_response`
 
 
 Indices and tables
