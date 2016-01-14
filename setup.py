@@ -12,10 +12,13 @@ dependencies = [
     'pyexcel-webio>=0.0.3'
 ]
 
+with open("VERSION", "r") as version:
+    version_txt = version.read().rstrip()
+
 setup(
     name='pyramid-excel',
     author="C. W.",
-    version='0.0.1',
+    version=version_txt,
     author_email="wangc_2011@hotmail.com",
     url="https://github.com/chfw/pyramid-excel",
     description='A pyramid extension that provides one application programming interface to read and write data in different excel file formats',

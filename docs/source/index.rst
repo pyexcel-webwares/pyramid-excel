@@ -350,64 +350,76 @@ API Reference
 
 .. autoclass:: ExcelRequestFactory
 
-   .. method:: get_sheet(sheet_name=None, **keywords)
+   .. method:: get_sheet(field_name=None, sheet_name=None, **keywords)
 
+      :param field_name: the file field name in the html form for file upload
       :param sheet_name: For an excel book, there could be multiple sheets. If it is left
                          unspecified, the sheet at index 0 is loaded. For 'csv', 'tsv' file,
                          *sheet_name* should be None anyway.
       :param keywords: additional keywords to :meth:`pyexcel.get_sheet`
       :returns: A sheet object
 
-   .. method:: get_array(sheet_name=None, **keywords)
-
-      :param sheet_name: same as :meth:`~pyramid_excel.ExcelMixin.get_sheet`
+   .. method:: get_array(field_name=None, sheet_name=None, **keywords)
+      :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
+      :param sheet_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
       :param keywords: additional keywords to pyexcel library
       :returns: a two dimensional array, a list of lists
 
-   .. method:: get_dict(sheet_name=None, name_columns_by_row=0, **keywords)
+   .. method:: get_dict(field_name=None, sheet_name=None, name_columns_by_row=0, **keywords)
 
-      :param sheet_name: same as :meth:`~pyramid_excel.ExcelMixin.get_sheet`
+      :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
+      :param sheet_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
       :param name_columns_by_row: uses the first row of the sheet to be column headers by default.
       :param keywords: additional keywords to pyexcel library
       :returns: a dictionary of the file content
 
-   .. method:: get_records(sheet_name=None, name_columns_by_row=0, **keywords)
+   .. method:: get_records(field_name=None, sheet_name=None, name_columns_by_row=0, **keywords)
 
-      :param sheet_name: same as :meth:`~pyramid_excel.ExcelMixin.get_sheet`
+      :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
+      :param sheet_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
       :param name_columns_by_row: uses the first row of the sheet to be record field names by default.
       :param keywords: additional keywords to pyexcel library
       :returns: a list of dictionary of the file content
 
-   .. method:: get_book(**keywords)
+   .. method:: get_book(field_name=None, **keywords)
 
+      :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
+      :param sheet_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
       :param keywords: additional keywords to pyexcel library
       :returns: a two dimensional array, a list of lists
 
-   .. method:: get_book_dict(**keywords)
+   .. method:: get_book_dict(field_name=None, **keywords)
 
+      :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
+      :param sheet_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
       :param keywords: additional keywords to pyexcel library
       :returns: a two dimensional array, a list of lists
 
-   .. method:: save_to_database(model=None, initializer=None, mapdict=None, **keywords)
+   .. method:: save_to_database(field_name=None, session=None, table=None, initializer=None, mapdict=None **keywords)
 
-      :param model: a django model
+      :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
+      :param session: a SQLAlchemy session						
+      :param table: a database table 
       :param initializer: a custom table initialization function if you have one
       :param mapdict: the explicit table column names if your excel data do not have the exact column names
-      :param keywords: additional keywords to :meth:`pyexcel.Sheet.save_to_django_model`
+      :param keywords: additional keywords to :meth:`pyexcel.Sheet.save_to_database`
 
-   .. method:: save_book_to_database(models=None, initializers=None, mapdicts=None, **keywords)
+   .. method:: save_book_to_database(field_name=None, session=None, tables=None, initializers=None, mapdicts=None, **keywords)
 
-      :param models: a list of django models
+      :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
+      :param session: a SQLAlchemy session
+      :param tables: a list of database tables
       :param initializers: a list of model initialization functions.
       :param mapdicts: a list of explicit table column names if your excel data sheets do not have the exact column names
-      :param keywords: additional keywords to :meth:`pyexcel.Book.save_to_django_models`
+      :param keywords: additional keywords to :meth:`pyexcel.Book.save_to_database`
+
 
 Response methods
 -----------------
 
 .. automodule:: pyramid_excel
 
-   .. method:: make_response(pyexcel_instance, file_type, status=200)
+   .. method:: make_response(pyexcel_instance, file_type, status=200, file_name=None)
 
       :param pyexcel_instance: :class:`pyexcel.Sheet` or :class:`pyexcel.Book`
       :param file_type: one of the following strings:
@@ -422,36 +434,40 @@ Response methods
                         * 'ods'
                           
       :param status: unless a different status is to be returned.
-            
-   .. method:: make_response_from_array(array, file_type, status=200)
+      :param file_name: provide a custom file name for the response, excluding the file extension
+
+   .. method:: make_response_from_array(array, file_type, status=200, file_name=None)
 
       :param array: a list of lists
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-            
-   .. method:: make_response_from_dict(dict, file_type, status=200)
+      :param file_name: same as :meth:`~flask_excel.make_response`
+
+   .. method:: make_response_from_dict(dict, file_type, status=200, file_name=None)
 
       :param dict: a dictinary of lists
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-            
-   .. method:: make_response_from_records(records, file_type, status=200)
+      :param file_name: same as :meth:`~flask_excel.make_response`
+
+   .. method:: make_response_from_records(records, file_type, status=200, file_name=None)
 
       :param records: a list of dictionaries
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
-            
+      :param file_name: same as :meth:`~flask_excel.make_response`
                 
-   .. method:: make_response_from_book_dict(book_dict, file_type, status=200)
+   .. method:: make_response_from_book_dict(book_dict, file_type, status=200, file_name=None)
 
       :param book_dict: a dictionary of two dimensional arrays
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
+      :param file_name: same as :meth:`~flask_excel.make_response`
 
-   .. autofunction:: make_response_from_a_table(model, file_type status=200)
+   .. autofunction:: make_response_from_a_table(model, file_type status=200, file_name=None)
 
 
-   .. method:: make_response_from_query_sets(query_sets, column_names, file_type status=200)
+   .. method:: make_response_from_query_sets(query_sets, column_names, file_type status=200, file_name=None)
 
       Produce a single sheet Excel book of *file_type* from your custom database queries
 
@@ -459,8 +475,9 @@ Response methods
       :param column_names: a nominated column names. It could not be None, otherwise no data is returned.
       :param file_type: same as :meth:`~pyramid_excel.make_response`
       :param status: same as :meth:`~pyramid_excel.make_response`
+      :param file_name: same as :meth:`~flask_excel.make_response`
 
-   .. autofunction:: make_response_from_tables(models, file_type status=200)
+   .. autofunction:: make_response_from_tables(models, file_type status=200, file_name=None)
 
 
 Indices and tables

@@ -2,8 +2,8 @@
 pyramid-excel - Let you focus on data, instead of file formats
 =================================================================
 
-.. image:: https://api.travis-ci.org/chfw/pyramid-excel.svg?branch=master
-   :target: http://travis-ci.org/chfw/pyramid-excel
+.. image:: https://api.travis-ci.org/pyexcel/pyramid-excel.svg?branch=master
+   :target: http://travis-ci.org/pyexcel/pyramid-excel
 
 .. image:: https://coveralls.io/repos/chfw/pyramid-excel/badge.svg
    :target: https://coveralls.io/r/chfw/pyramid-excel 

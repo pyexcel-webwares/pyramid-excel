@@ -6,26 +6,39 @@ import pyexcel.ext.ods3
 import pyramid_excel as excel
 from sqlalchemy.exc import DBAPIError
 
+
 from .models import (
     DBSession,
     Category,
     Post
     )
 
+
 @view_config(route_name='home', renderer='templates/mytemplate.pt')
 def my_view(request):
     return {'project': 'MyProject'}
+
 
 @view_config(route_name='switch')
 def switch(request):
     sheet = request.get_sheet(field_name='file')
     return excel.make_response(sheet, request.matchdict.get('file_type', 'csv'))
 
+
 @view_config(route_name='upload', renderer='templates/upload_form.pt')
 def upload_view(request):
     if request.method == 'POST':
         data = request.get_array(field_name='file')
         return excel.make_response_from_array(data, 'xls')
+
+
+@view_config(route_name='download', renderer='templates/upload_form.pt')
+def download_attachment(request):
+    data = [[1, 2], [3, 4]]
+    return excel.make_response_from_array(
+        data,
+        request.matchdict.get('file_type', 'csv'),
+        file_name=request.matchdict.get('file_name', ''))
 
 
 @view_config(route_name='uploadall')
@@ -52,4 +65,3 @@ def upload_categories(request):
     request.save_to_database(field_name='file', session=DBSession,
                              table=Category, initializer=table_init_func)
     return excel.make_response_from_a_table(DBSession, Category, "xls")
-

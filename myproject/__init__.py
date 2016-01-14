@@ -20,6 +20,7 @@ def main(global_config, **settings):
     config.add_static_view('static', 'static', cache_max_age=3600)
     config.add_route('home', '/')
     config.add_route('upload', '/upload')
+    config.add_route('download', '/download/{file_name}/{file_type}')
     config.add_route('switch', '/switch/{file_type}')
     config.add_route('uploadall', '/upload/all')
     config.add_route('upload_categories', '/upload/categories')

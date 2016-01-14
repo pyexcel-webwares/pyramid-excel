@@ -29,6 +29,7 @@ class ExcelRequestFactory(webio.ExcelInputInMultiDict, Request):
             self,
             auto_commit=auto_commit,
             **keywords)
+
     def save_to_database(
             self,
             auto_commit=False,
@@ -38,8 +39,19 @@ class ExcelRequestFactory(webio.ExcelInputInMultiDict, Request):
             auto_commit=auto_commit,
             **keywords)
 
+
+def _make_response(content, content_type, status, file_name=None):
+    """
+    Custom response function that is called by pyexcel-webio
+    """
+    response = Response(content, content_type=content_type, status=status)
+    if file_name:
+        response.content_disposition = "attachment; filename=%s" % (file_name)
+    return response
+
+
 # set up webio
-webio.ExcelResponse = Response
+webio.ExcelResponse = _make_response
 
 
 # import all response methods
@@ -59,6 +71,3 @@ def includeme(config):
     """ pyramid_excel extension
     """
     config.set_request_factory(ExcelRequestFactory)
-
-
-    

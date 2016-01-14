@@ -25,7 +25,7 @@ class TestExcelResponse:
             [4, 5, 6]
         ]
 
-    def test_download(self):
+    def test_upload_and_download(self):
         for upload_file_type in FILE_TYPE_MIME_TABLE.keys():
             file_name = 'test.%s' % upload_file_type
             for download_file_type in FILE_TYPE_MIME_TABLE.keys():
@@ -50,3 +50,10 @@ class TestExcelResponse:
                 array = sheet.to_array()
                 assert array == self.data
 
+    def test_download(self):
+        test_file_name = "test"
+        for file_type in FILE_TYPE_MIME_TABLE.keys():
+            response = self.app.get('/download/%s/%s' % (test_file_name, file_type))
+            assert response.content_type == FILE_TYPE_MIME_TABLE[file_type]
+            expected = "attachment; filename=%s.%s" % (test_file_name, file_type)
+            assert response.content_disposition == expected
