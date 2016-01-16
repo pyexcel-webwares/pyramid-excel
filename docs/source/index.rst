@@ -30,19 +30,19 @@ The highlighted features are:
    ================ ==========================================
    Plugins          Supported file formats                    
    ================ ==========================================
-   `xls`_           xls, xlsx(r), xlsm(r)
-   `xlsx`_          xlsx
-   `ods3`_          ods (python 2.6, 2.7, 3.3, 3.4)                
-   `ods`_           ods (python 2.6, 2.7)                     
-   `text`_          (write only)json, rst, mediawiki,
+   `pyexcel-xls`_   xls, xlsx(r), xlsm(r)
+   `pyexcel-xlsx`_  xlsx
+   `pyexcel-ods3`_  ods (python 2.6, 2.7, 3.3, 3.4)                
+   `pyexcel-ods`_   ods (python 2.6, 2.7)                     
+   `pyexcel-text`_  (write only)json, rst, mediawiki,
                     latex, grid, pipe, orgtbl, plain simple
    ================ ==========================================
    
-.. _xls: https://github.com/chfw/pyexcel-xls
-.. _xlsx: https://github.com/chfw/pyexcel-xlsx
-.. _ods: https://github.com/chfw/pyexcel-ods
-.. _ods3: https://github.com/chfw/pyexcel-ods3
-.. _text: https://github.com/chfw/pyexcel-text
+.. _pyexcel-xls: https://github.com/chfw/pyexcel-xls
+.. _pyexcel-xlsx: https://github.com/chfw/pyexcel-xlsx
+.. _pyexcel-ods: https://github.com/chfw/pyexcel-ods
+.. _pyexcel-ods3: https://github.com/chfw/pyexcel-ods3
+.. _pyexcel-text: https://github.com/chfw/pyexcel-text
 
 This library makes infomation processing involving various excel files as easy as processing array and dictionary. The information processing job includes file upload/download, data import into and export from SQL databases, information analysis and persistence. It uses **pyexcel** and its plugins: 1) to provide one uniform programming interface to handle csv, tsv, xls, xlsx, xlsm and ods formats. 2) to provide one-stop utility to import the data in uploaded file into a database and to export tables in a database as excel files for file download 3) to provide the same interface for information persistence at server side: saving a uploaded excel file to and loading a saved excel file from file system.
 
@@ -111,7 +111,7 @@ Here is the quick demonstration code for pyramid-excel::
     def upload_view(request):
         if request.method == 'POST':
             data = request.get_array(field_name='file')
-            return excel.make_response_from_array(data, 'xls')
+            return excel.make_response_from_array(data, 'xls', file_name="response")
         return Response(upload_form)
     
     
@@ -324,19 +324,19 @@ All supported data types
 
 Here is table of functions for all supported data types:
 
-=========================== ======================================================== ===================================================
-data structure              from file to data structures                             from data structures to response
-=========================== ======================================================== ===================================================
-dict                        :meth:`~django_excel.ExcelMixin.get_dict`                :meth:`~django_excel.make_response_from_dict`
-records                     :meth:`~django_excel.ExcelMixin.get_records`             :meth:`~django_excel.make_response_from_records`
-a list of lists             :meth:`~django_excel.ExcelMixin.get_array`               :meth:`~django_excel.make_response_from_array`
-dict of a list of lists     :meth:`~django_excel.ExcelMixin.get_book_dict`           :meth:`~django_excel.make_response_from_book_dict`
-:class:`pyexcel.Sheet`      :meth:`~django_excel.ExcelMixin.get_sheet`               :meth:`~django_excel.make_response`
-:class:`pyexcel.Book`       :meth:`~django_excel.ExcelMixin.get_book`                :meth:`~django_excel.make_response`
-database table              :meth:`~django_excel.ExcelMixin.save_to_database`        :meth:`~django_excel.make_response_from_a_table` 
-a list of database tables   :meth:`~django_excel.ExcelMixin.save_book_to_database`   :meth:`~django_excel.make_response_from_tables`
-a database query sets                                                                :meth:`~django_excel.make_response_from_query_sets`
-=========================== ======================================================== ===================================================
+=========================== ================================================================ ===================================================
+data structure              from file to data structures                                     from data structures to response
+=========================== ================================================================ ===================================================
+dict                        :meth:`~pyramid_excel.ExcelRequestFactory.get_dict`              :meth:`~pyramid_excel.make_response_from_dict`
+records                     :meth:`~pyramid_excel.ExcelRequestFactory.get_records`           :meth:`~pyramid_excel.make_response_from_records`
+a list of lists             :meth:`~pyramid_excel.ExcelRequestFactory.get_array`             :meth:`~pyramid_excel.make_response_from_array`
+dict of a list of lists     :meth:`~pyramid_excel.ExcelRequestFactory.get_book_dict`         :meth:`~pyramid_excel.make_response_from_book_dict`
+:class:`pyexcel.Sheet`      :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`             :meth:`~pyramid_excel.make_response`
+:class:`pyexcel.Book`       :meth:`~pyramid_excel.ExcelRequestFactory.get_book`              :meth:`~pyramid_excel.make_response`
+database table              :meth:`~pyramid_excel.ExcelRequestFactory.save_to_database`      :meth:`~pyramid_excel.make_response_from_a_table` 
+a list of database tables   :meth:`~pyramid_excel.ExcelRequestFactory.save_book_to_database` :meth:`~pyramid_excel.make_response_from_tables`
+a database query sets                                                                        :meth:`~pyramid_excel.make_response_from_query_sets`
+=========================== ================================================================ ===================================================
 
 See more examples of the data structures in :ref:`pyexcel documentation<pyexcel:a-list-of-data-structures>`
 
@@ -361,6 +361,7 @@ ExcelRequestFactory
    :returns: A sheet object
 
 .. method:: get_array(field_name=None, sheet_name=None, **keywords)
+
    :param field_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
    :param sheet_name: same as :meth:`~pyramid_excel.ExcelRequestFactory.get_sheet`
    :param keywords: additional keywords to pyexcel library
