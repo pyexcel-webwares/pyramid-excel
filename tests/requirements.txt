@@ -4,7 +4,7 @@ zope.sqlalchemy
 nose
 rednose
 nose-cov
-python-coveralls
+codecov
 coverage
 pyexcel-xls
 pyexcel-xlsx

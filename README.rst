@@ -5,13 +5,13 @@ pyramid-excel - Let you focus on data, instead of file formats
 .. image:: https://api.travis-ci.org/pyexcel/pyramid-excel.svg?branch=master
    :target: http://travis-ci.org/pyexcel/pyramid-excel
 
-.. image:: https://coveralls.io/repos/chfw/pyramid-excel/badge.svg
-   :target: https://coveralls.io/r/chfw/pyramid-excel 
+.. image:: https://codecov.io/github/pyexcel/pyramid-excel/coverage.png
+    :target: https://codecov.io/github/pyexcel/pyramid-excel
 
 .. image:: https://readthedocs.org/projects/pyramid-excel/badge/?version=latest
     :target: http://pyramid-excel.readthedocs.org/en/latest/
 	     
-**pyramid-excel** is based on `pyexcel <https://github.com/chfw/pyexcel>`_ and makes it easy
+**pyramid-excel** is based on `pyexcel <https://github.com/pyexcel/pyexcel>`_ and makes it easy
 to consume/produce information stored in excel files over HTTP protocol as well as on file
 system. This library can turn the excel data into a list of lists, a list of
 records(dictionaries), dictionaries of lists. And vice versa. Hence it lets you focus on
@@ -46,11 +46,11 @@ Plugins          Supported file formats
 `pyexcel-text`_  (write only) json, rst, mediawiki, etc.
 ================ ============================================
 
-.. _pyexcel-xls: https://github.com/chfw/pyexcel-xls
-.. _pyexcel-xlsx: https://github.com/chfw/pyexcel-xlsx
-.. _pyexcel-ods: https://github.com/chfw/pyexcel-ods
-.. _pyexcel-ods3: https://github.com/chfw/pyexcel-ods3
-.. _pyexcel-text: https://github.com/chfw/pyexcel-text
+.. _pyexcel-xls: https://github.com/pyexcel/pyexcel-xls
+.. _pyexcel-xlsx: https://github.com/pyexcel/pyexcel-xlsx
+.. _pyexcel-ods: https://github.com/pyexcel/pyexcel-ods
+.. _pyexcel-ods3: https://github.com/pyexcel/pyexcel-ods3
+.. _pyexcel-text: https://github.com/pyexcel/pyexcel-text
 
 
 Known constraints
@@ -67,7 +67,7 @@ You can install it via pip::
 
 or clone it and install it::
 
-    $ git clone http://github.com/chfw/pyramid-excel.git
+    $ git clone http://github.com/pyexcel/pyramid-excel.git
     $ cd pyramid-excel
     $ python setup.py install
 

@@ -7,12 +7,12 @@ Welcome to pyramid-excel's documentation!
 =========================================
 
 :Author: C.W.
-:Issues: http://github.com/chfw/pyramid-excel/issues
+:Issues: http://github.com/pyexcel/pyramid-excel/issues
 :License: New BSD License
 :Version: |version| 
 :Generated: |today|
 
-**pyramid-excel** is based on `pyexcel <https://github.com/chfw/pyexcel>`_ and makes it easy to consume/produce information stored in excel files over HTTP protocol as well as on file system. This library can turn the excel data into a list of lists, a list of records(dictionaries), dictionaries of lists. And vice versa. Hence it lets you focus on data in pyramid based web development, instead of file formats.
+**pyramid-excel** is based on `pyexcel <https://github.com/pyexcel/pyexcel>`_ and makes it easy to consume/produce information stored in excel files over HTTP protocol as well as on file system. This library can turn the excel data into a list of lists, a list of records(dictionaries), dictionaries of lists. And vice versa. Hence it lets you focus on data in pyramid based web development, instead of file formats.
 
 The highlighted features are:
 
@@ -38,11 +38,11 @@ The highlighted features are:
                     latex, grid, pipe, orgtbl, plain simple
    ================ ==========================================
    
-.. _pyexcel-xls: https://github.com/chfw/pyexcel-xls
-.. _pyexcel-xlsx: https://github.com/chfw/pyexcel-xlsx
-.. _pyexcel-ods: https://github.com/chfw/pyexcel-ods
-.. _pyexcel-ods3: https://github.com/chfw/pyexcel-ods3
-.. _pyexcel-text: https://github.com/chfw/pyexcel-text
+.. _pyexcel-xls: https://github.com/pyexcel/pyexcel-xls
+.. _pyexcel-xlsx: https://github.com/pyexcel/pyexcel-xlsx
+.. _pyexcel-ods: https://github.com/pyexcel/pyexcel-ods
+.. _pyexcel-ods3: https://github.com/pyexcel/pyexcel-ods3
+.. _pyexcel-text: https://github.com/pyexcel/pyexcel-text
 
 This library makes infomation processing involving various excel files as easy as processing array and dictionary. The information processing job includes file upload/download, data import into and export from SQL databases, information analysis and persistence. It uses **pyexcel** and its plugins: 1) to provide one uniform programming interface to handle csv, tsv, xls, xlsx, xlsm and ods formats. 2) to provide one-stop utility to import the data in uploaded file into a database and to export tables in a database as excel files for file download 3) to provide the same interface for information persistence at server side: saving a uploaded excel file to and loading a saved excel file from file system.
 
@@ -51,7 +51,7 @@ Installation
 ============
 You can install it via github::
 
-    $ git clone http://github.com/chfw/pyramid-excel.git
+    $ git clone http://github.com/pyexcel/pyramid-excel.git
     $ cd pyramid-excel
     $ python setup.py install
 
@@ -135,9 +135,9 @@ And you can start the tiny server by this command, assuming you have save it as 
     Listening on 0.0.0.0:5000
 
 .. note::
-    Alternatively, you can check out the code from `github <https://github.com/chfw/pyramid-excel>`_ ::
+    Alternatively, you can check out the code from `github <https://github.com/pyexcel/pyramid-excel>`_ ::
     
-        git clone https://github.com/chfw/pyramid-excel.git
+        git clone https://github.com/pyexcel/pyramid-excel.git
 
     The test application for pyramid-excel is a fully fledged site according to the tutorial here.
     
@@ -188,7 +188,7 @@ the following code in their own appearing sequence and paste them after the plac
 
     # insert database related code here
 
-Alernatively, you can find the complete example on `github <https://github.com/chfw/pyramid-excel/blob/master/examples/database_example.py>`_
+Alernatively, you can find the complete example on `github <https://github.com/pyexcel/pyramid-excel/blob/master/examples/database_example.py>`_
 
 Now let's add the following imports first::
 
@@ -303,7 +303,7 @@ Write up the view function for data export::
     def doexport(request):
         return excel.make_response_from_tables(DBSession, [Category, Post], "xls")
 
-Then run the example again. Visit http://localhost:5000/import and upload `sample-data.xls <https://github.com/chfw/pyramid-excel/blob/master/sample-data.xls>`_ . Then visit http://localhost:5000/export to download the data back.
+Then run the example again. Visit http://localhost:5000/import and upload `sample-data.xls <https://github.com/pyexcel/pyramid-excel/blob/master/sample-data.xls>`_ . Then visit http://localhost:5000/export to download the data back.
 
 Export filtered query sets
 -----------------------------
