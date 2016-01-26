@@ -5,7 +5,7 @@ webframework: Pyramid
 dependencies:
   - pyexcel>=0.2.0
   - pyexcel-webio>=0.0.5
-  - Django>=1.5.7
+  - Pyramid>=1.5.7
 extra_dependencies:
   - xls:
     - pyexcel-xls>=0.1.0
