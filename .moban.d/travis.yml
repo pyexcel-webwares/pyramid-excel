@@ -1,0 +1,5 @@
+{% extends "travis.yml.jj2" %}
+{%block test_other_python_versions%}  - 3.3
+  - 3.4
+  - 3.5
+{%endblock%}

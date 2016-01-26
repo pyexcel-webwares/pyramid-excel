@@ -1,0 +1,17 @@
+overrides: "pyexcel.yaml"
+name: "pyramid-excel"
+version: 0.0.2
+webframework: Pyramid
+dependencies:
+  - pyexcel>=0.2.0
+  - pyexcel-webio>=0.0.5
+  - Django>=1.5.7
+extra_dependencies:
+  - xls:
+    - pyexcel-xls>=0.1.0
+  - xlsx:
+    - pyexcel-xlsx>=0.1.0
+  - ods:
+    - pyexcel-ods3>=0.1.0
+description: |
+  A pyramid extension that provides one application programming interface to read and write data in different excel file formats
