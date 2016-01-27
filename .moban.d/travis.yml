@@ -3,3 +3,6 @@
   - 3.4
   - 3.5
 {%endblock%}
+
+{% block custom_install %}  - pip install https://github.com/pyexcel/pyexcel-webio/archive/master.zip
+{% endblock%}

@@ -8,7 +8,6 @@
     :copyright: (c) 2015 by Onni Software Ltd.
     :license: New BSD License
 """
-import pyexcel as pe
 import pyexcel_webio as webio
 from pyramid.request import Request
 from pyramid.response import Response
@@ -30,10 +29,8 @@ class ExcelRequestFactory(webio.ExcelInputInMultiDict, Request):
             auto_commit=auto_commit,
             **keywords)
 
-    def save_to_database(
-            self,
-            auto_commit=False,
-            **keywords):
+    def save_to_database(self, auto_commit=False,
+                         **keywords):
         webio.ExcelInputInMultiDict.save_to_database(
             self,
             auto_commit=auto_commit,
