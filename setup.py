@@ -23,7 +23,7 @@ extras = {
 
 setup(
     name='pyramid-excel',
-    author='C. W.',
+    author='C.W.',
     version='0.0.3',
     author_email='wangc_2011 (at) hotmail.com',
     url='https://github.com/pyexcel/pyramid-excel',
