@@ -1,8 +1,14 @@
 {% extends "travis.yml.jj2" %}
+{%block test_other_environments%}
+  - PYRAMID_VERSION=1.4.9
+  - PYRAMID_VERSION=1.5.7
+  - PYRAMID_VERSION=1.6.1
+{%endblock%}
+
 {%block test_other_python_versions%}  - 3.3
   - 3.4
   - 3.5
 {%endblock%}
 
-{% block custom_install %}  - pip install https://github.com/pyexcel/pyexcel-webio/archive/master.zip
+{% block custom_install %}  - pip install pyramid==PYRAMID_VERSION
 {% endblock%}

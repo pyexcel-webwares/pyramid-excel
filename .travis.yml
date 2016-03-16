@@ -3,14 +3,16 @@ language: python
 notifications:
   email: false
 env:
-  global:
+  - PYRAMID_VERSION=1.4.9
+  - PYRAMID_VERSION=1.5.7
+  - PYRAMID_VERSION=1.6.1
 python:
   - 2.7
   - 3.3
   - 3.4
   - 3.5
 install:
-  - pip install https://github.com/pyexcel/pyexcel-webio/archive/master.zip
+  - pip install pyramid==PYRAMID_VERSION
   - pip install -r requirements.txt
   - pip install -r tests/requirements.txt
 script:

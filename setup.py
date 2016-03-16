@@ -11,7 +11,7 @@ with open("README.rst", 'r') as readme:
 dependencies = [
     'pyexcel>=0.2.0',
     'pyexcel-webio>=0.0.6',
-    'Pyramid>=1.5.7',
+    'Pyramid>=1.4.9',
 ]
 
 extras = {
