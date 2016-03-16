@@ -10,5 +10,5 @@
   - 3.5
 {%endblock%}
 
-{% block custom_install %}  - pip install pyramid==PYRAMID_VERSION
+{% block custom_install %}  - pip install pyramid==$PYRAMID_VERSION
 {% endblock%}
