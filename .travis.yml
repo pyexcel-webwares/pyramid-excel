@@ -7,13 +7,15 @@ env:
   - PYRAMID_VERSION=1.5.7
   - PYRAMID_VERSION=1.6.1
 python:
+  - pypy
+  - 2.6
   - 2.7
+  - pypy3
   - 3.3
   - 3.4
   - 3.5
-install:
+before_install:
   - pip install pyramid==$PYRAMID_VERSION
-  - pip install -r requirements.txt
   - pip install -r tests/requirements.txt
 script:
   make test
