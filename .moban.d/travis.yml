@@ -5,6 +5,13 @@ env:
   - PYRAMID_VERSION=1.5.7
   - PYRAMID_VERSION=1.6.1
 {%endblock%}
-
+{%block custom_python_versions%}
+python:
+  - 2.6
+  - 2.7
+  - 3.3
+  - 3.4
+  - 3.5
+{%endblock%}
 {% block custom_install %}  - pip install pyramid==$PYRAMID_VERSION
 {% endblock%}
