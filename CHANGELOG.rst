@@ -1,11 +1,10 @@
 Change log
 ================================================================================
 
-0.0.3 - 16-Mar-2016
+unlreased
 --------------------------------------------------------------------------------
 
-Update:
+Updated
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-#. update dependencies on pyramid>=1.4.9, pyexcel-webio>=0.0.6
-#. use moban to separate common texts from package specific info
+#. use pyexcel-webio 0.0.7 which uses pyexcel 0.2.2
