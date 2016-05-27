@@ -1,2 +1,2 @@
 pip freeze
-nosetests --with-cov --cov pyramid_excel --cov tests --with-doctest --doctest-extension=.rst
+nosetests --with-coverage --cover-package pyramid_excel --cover-package tests --with-doctest --doctest-extension=.rst

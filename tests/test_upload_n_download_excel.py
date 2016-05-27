@@ -30,9 +30,8 @@ class TestExcelResponse:
             file_name = 'test.%s' % upload_file_type
             for download_file_type in FILE_TYPE_MIME_TABLE.keys():
                 print("Uploading %s Downloading %s" % (upload_file_type, download_file_type))
-                io = pe.get_io(upload_file_type)
                 sheet = pe.Sheet(self.data)
-                sheet.save_to_memory(upload_file_type, io)
+                io = sheet.save_to_memory(upload_file_type)
                 io.seek(0)
                 if not PY2:
                     if isinstance(io, BytesIO):
