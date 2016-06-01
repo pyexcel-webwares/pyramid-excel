@@ -25,7 +25,6 @@ Here is the quick demonstration code for pyramid-excel::
     from pyramid.response import Response
     from pyramid.view import view_config
     import pyramid_excel as excel
-    import pyexcel.ext.xls # pip install pyexcel-xls
     
     
     upload_form = """
