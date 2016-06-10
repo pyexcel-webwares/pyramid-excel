@@ -4,7 +4,7 @@ from pyramid.response import Response
 from pyramid.view import view_config
 import pyramid_excel as excel
 import datetime
-import pyexcel.ext.xls
+import pyexcel.ext.xls  # noqa
 
 
 upload_form = """
@@ -25,9 +25,8 @@ def upload_view(request):
     return Response(upload_form)
 
 # database operations
-from sqlalchemy import (
+from sqlalchemy import (  # noqa
     Column,
-    Index,
     Integer,
     Text,
     String,
@@ -36,14 +35,14 @@ from sqlalchemy import (
     create_engine
     )
 
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.orm import (
+from sqlalchemy.ext.declarative import declarative_base  # noqa
+from sqlalchemy.orm import relationship, backref  # noqa
+from sqlalchemy.orm import (  # noqa
     scoped_session,
     sessionmaker,
     )
 
-from zope.sqlalchemy import ZopeTransactionExtension
+from zope.sqlalchemy import ZopeTransactionExtension  # noqa
 
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
@@ -58,7 +57,7 @@ class Post(Base):
 
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship('Category',
-        backref=backref('posts', lazy='dynamic'))
+                            backref=backref('posts', lazy='dynamic'))
 
     def __init__(self, title, body, category, pub_date=None):
         self.title = title
@@ -84,21 +83,24 @@ class Category(Base):
         return '<Category %r>' % self.name
 
 
-
 @view_config(route_name="import")
 def doimport(request):
     if request.method == 'POST':
+
         def category_init_func(row):
             c = Category(row['name'])
             c.id = row['id']
             return c
+
         def post_init_func(row):
-            c = DBSession.query(Category).filter_by(name=row['category']).first()
+            c = DBSession.query(Category).filter_by(
+                name=row['category']).first()
             p = Post(row['title'], row['body'], c, row['pub_date'])
             return p
-        request.save_book_to_database(field_name='file', session=DBSession,
-                                      tables=[Category, Post],
-                                      initializers=[category_init_func, post_init_func])
+        request.save_book_to_database(
+            field_name='file', session=DBSession,
+            tables=[Category, Post],
+            initializers=[category_init_func, post_init_func])
         return Response("Saved")
     return Response(upload_form)
 
@@ -119,7 +121,7 @@ def init_db():
     engine = create_engine('sqlite:///tmp.db')
     DBSession.configure(bind=engine)
     Base.metadata.drop_all(engine)
-    Base.metadata.create_all(engine)    
+    Base.metadata.create_all(engine)
 
 
 if __name__ == '__main__':

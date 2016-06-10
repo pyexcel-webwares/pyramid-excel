@@ -1,6 +1,10 @@
 import pyexcel as pe
 from _compact import BytesIO, PY2
+from nose.tools import eq_
 
+_XLSX_MIME = (
+    "application/" +
+    "vnd.openxmlformats-officedocument.spreadsheetml.sheet")
 
 FILE_TYPE_MIME_TABLE = {
     "csv": "text/csv",
@@ -9,7 +13,7 @@ FILE_TYPE_MIME_TABLE = {
     "tsvz": "application/zip",
     "ods": "application/vnd.oasis.opendocument.spreadsheet",
     "xls": "application/vnd.ms-excel",
-    "xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    "xlsx": _XLSX_MIME,
     "xlsm": "application/vnd.ms-excel.sheet.macroenabled.12"
 }
 
@@ -29,7 +33,8 @@ class TestExcelResponse:
         for upload_file_type in FILE_TYPE_MIME_TABLE.keys():
             file_name = 'test.%s' % upload_file_type
             for download_file_type in FILE_TYPE_MIME_TABLE.keys():
-                print("Uploading %s Downloading %s" % (upload_file_type, download_file_type))
+                print("Uploading %s Downloading %s" % (upload_file_type,
+                                                       download_file_type))
                 sheet = pe.Sheet(self.data)
                 io = sheet.save_to_memory(upload_file_type)
                 io.seek(0)
@@ -40,11 +45,14 @@ class TestExcelResponse:
                         content = io.getvalue().encode('utf-8')
                 else:
                     content = io.getvalue()
-                response = self.app.post('/switch/%s' % download_file_type,
-                                         upload_files = [('file', file_name, content)],
-                                         )
-                assert response.content_type == FILE_TYPE_MIME_TABLE[download_file_type]
-                sheet = pe.get_sheet(file_type=download_file_type, file_content=response.body)
+                response = self.app.post(
+                    '/switch/%s' % download_file_type,
+                    upload_files=[('file', file_name, content)],
+                )
+                eq_(response.content_type,
+                    FILE_TYPE_MIME_TABLE[download_file_type])
+                sheet = pe.get_sheet(file_type=download_file_type,
+                                     file_content=response.body)
                 sheet.format(int)
                 array = sheet.to_array()
                 assert array == self.data
@@ -52,7 +60,10 @@ class TestExcelResponse:
     def test_download(self):
         test_file_name = "test"
         for file_type in FILE_TYPE_MIME_TABLE.keys():
-            response = self.app.get('/download/%s/%s' % (test_file_name, file_type))
-            assert response.content_type == FILE_TYPE_MIME_TABLE[file_type]
-            expected = "attachment; filename=%s.%s" % (test_file_name, file_type)
+            response = self.app.get(
+                '/download/%s/%s' % (test_file_name, file_type))
+            eq_(response.content_type,
+                FILE_TYPE_MIME_TABLE[file_type])
+            expected = "attachment; filename=%s.%s" % (test_file_name,
+                                                       file_type)
             assert response.content_disposition == expected

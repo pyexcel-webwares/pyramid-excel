@@ -4,7 +4,7 @@ from pyramid.response import Response
 from pyramid.view import view_config
 import pyramid_excel as excel
 # no longer you would need this import statement
-import pyexcel.ext.xls
+import pyexcel.ext.xls  # noqa
 
 
 upload_form = """
@@ -24,8 +24,8 @@ def upload_view(request):
         return excel.make_response_from_array(data, 'xls')
     return Response(upload_form)
 
-# insert database related code here
 
+# insert database related code here
 if __name__ == '__main__':
     config = Configurator()
     config.include('pyramid_excel')

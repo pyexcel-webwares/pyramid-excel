@@ -11,17 +11,21 @@ VERSION = '0.0.3'
 EMAIL = 'wangc_2011 (at) hotmail.com'
 LICENSE = 'New BSD'
 PACKAGES = find_packages(exclude=['ez_setup', 'examples', 'tests'])
-DESCRIPTION = 'A pyramid extension that provides one application programming interface to read and write data in different excel file formats'
+DESCRIPTION = (
+    'A pyramid extension that provides one application programming interfac' +
+    'e to read and write data in different excel file formats' +
+    ''
+)
 KEYWORDS = [
-   'excel',
-   'python',
-   'pyexcel',
-        'API',
-        'Pyramid',
-        'xls',
-        'xlsx',
-        'ods',
-        'csv'
+    'excel',
+    'python',
+    'pyexcel',
+    'API',
+    'Pyramid',
+    'xls',
+    'xlsx',
+    'ods',
+    'csv'
 ]
 
 INSTALL_REQUIRES = [
@@ -43,16 +47,16 @@ CLASSIFIERS = [
     'Programming Language :: Python',
     'License :: OSI Approved :: BSD License',
     'Intended Audience :: Developers',
-        'Development Status :: 3 - Alpha',
-        'Environment :: Web Environment',
-        'Topic :: Internet :: WWW/HTTP',
-        'Topic :: Software Development :: Libraries :: Python Modules',
-        'Programming Language :: Python :: 2',
-        'Programming Language :: Python :: 2.7',
-        'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5'
+    'Development Status :: 3 - Alpha',
+    'Environment :: Web Environment',
+    'Topic :: Internet :: WWW/HTTP',
+    'Topic :: Software Development :: Libraries :: Python Modules',
+    'Programming Language :: Python :: 2',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5'
 ]
 
 

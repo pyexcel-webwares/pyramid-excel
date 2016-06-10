@@ -11,6 +11,17 @@
 import pyexcel_webio as webio
 from pyramid.request import Request
 from pyramid.response import Response
+# import all response methods
+from pyexcel_webio import (  # noqa
+    make_response,
+    make_response_from_array,
+    make_response_from_dict,
+    make_response_from_records,
+    make_response_from_book_dict,
+    make_response_from_a_table,
+    make_response_from_query_sets,
+    make_response_from_tables
+)
 
 
 class ExcelRequestFactory(webio.ExcelInputInMultiDict, Request):
@@ -49,19 +60,6 @@ def _make_response(content, content_type, status, file_name=None):
 
 # set up webio
 webio.ExcelResponse = _make_response
-
-
-# import all response methods
-from pyexcel_webio import (
-    make_response,
-    make_response_from_array,
-    make_response_from_dict,
-    make_response_from_records,
-    make_response_from_book_dict,
-    make_response_from_a_table,
-    make_response_from_query_sets,
-    make_response_from_tables
-)
 
 
 def includeme(config):

@@ -14,7 +14,7 @@ def main(global_config, **settings):
     DBSession.configure(bind=engine)
     Base.metadata.bind = engine
     Base.metadata.drop_all(engine)
-    Base.metadata.create_all(engine)    
+    Base.metadata.create_all(engine)
     config = Configurator(settings=settings)
     config.include('pyramid_excel')
     config.add_static_view('static', 'static', cache_max_age=3600)

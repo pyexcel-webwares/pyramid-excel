@@ -77,6 +77,13 @@ and export from SQL databases, information analysis and persistence. It uses
 Installation
 -------------------
 
+
+Recently, pyexcel(0.2.2+) and its plugins(0.2.0+) started using newer version of setuptools. Please upgrade your setup tools before install latest pyexcel components:
+
+.. code-block:: bash
+
+    $ pip install --upgrade setuptools
+
 You can install it via pip:
 
 .. code-block:: bash
@@ -121,7 +128,6 @@ Here is the quick demonstration code for pyramid-excel::
     from pyramid.response import Response
     from pyramid.view import view_config
     import pyramid_excel as excel
-    import pyexcel.ext.xls # pip install pyexcel-xls
     
     
     upload_form = """

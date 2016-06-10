@@ -1,12 +1,10 @@
 from sqlalchemy import (
     Column,
-    Index,
     Integer,
     Text,
     String,
     ForeignKey,
-    DateTime,
-    create_engine
+    DateTime
     )
 
 from sqlalchemy.ext.declarative import declarative_base
@@ -32,7 +30,8 @@ class Post(Base):
 
     category_id = Column(Integer, ForeignKey('category.id'))
     category = relationship('Category',
-        backref=backref('posts', lazy='dynamic'))
+                            backref=backref('posts',
+                                            lazy='dynamic'))
 
     def __init__(self, title, body, category, pub_date=None):
         self.title = title
@@ -56,4 +55,3 @@ class Category(Base):
 
     def __repr__(self):
         return '<Category %r>' % self.name
-
