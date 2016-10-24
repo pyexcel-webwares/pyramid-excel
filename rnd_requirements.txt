@@ -1,2 +1,5 @@
+<<<<<<< HEAD
 https://github.com/pyexcel/pyexcel/archive/master.zip
 https://github.com/pyexcel/pyexcel-webio/archive/master.zip
+=======
+>>>>>>> c9820c306e97b032a3cf3be2d5ca1457c460f440

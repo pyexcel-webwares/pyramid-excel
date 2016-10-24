@@ -11,7 +11,7 @@ PY26 = PY2 and sys.version_info[1] < 7
 
 NAME = 'pyramid-excel'
 AUTHOR = 'C.W.'
-VERSION = '0.0.3'
+VERSION = '0.0.4'
 EMAIL = 'wangc_2011 (at) hotmail.com'
 LICENSE = 'New BSD'
 DESCRIPTION = (
@@ -51,8 +51,8 @@ CLASSIFIERS = [
 ]
 
 INSTALL_REQUIRES = [
-    'pyexcel>=0.2.0',
-    'pyexcel-webio>=0.0.6',
+    'pyexcel>=0.2.2',
+    'pyexcel-webio>=0.0.7',
     'Pyramid>=1.4.9',
 ]
 
