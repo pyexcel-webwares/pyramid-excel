@@ -11,6 +11,22 @@ pyramid-excel - Let you focus on data, instead of file formats
 .. image:: https://readthedocs.org/projects/pyramid-excel/badge/?version=latest
    :target: http://pyramid-excel.readthedocs.org/en/latest/
 
+Known constraints
+==================
+
+Fonts, colors and charts are not supported.
+
+Here is a typical conversation between the developer and the user::
+
+ User: "I have uploaded an excel file"
+       "but your application says un-supported file format"
+ Developer: "Did you upload an xlsx file or a csv file?"
+ User: "Well, I am not sure. I saved the data using "
+       "Microsoft Excel. Surely, it must be in an excel format."
+ Developer: "OK. Here is the thing. I were not told to support"
+            "all available excel formats in day 1. Live with it"
+            "or delay the project x number of days."
+
 **pyramid-excel** is based on `pyexcel <https://github.com/pyexcel/pyexcel>`_ and makes
 it easy to consume/produce information stored in excel files over HTTP protocol as
 well as on file system. This library can turn the excel data into a list of lists,
@@ -19,51 +35,72 @@ lets you focus on data in Pyramid based web development, instead of file formats
 
 The idea originated from the common usability problem when developing an excel file
 driven web applications for non-technical office workers: such as office assistant,
-human resource administrator. It is an un-deniable fact that not all people know the
+human resource administrator. The fact is that not all people know the
 difference among various excel formats: csv, xls, xlsx. Instead of training those people
 about file formats, this library helps web developers to handle most of the excel file
-formats by providing a common programming interface.
+formats by providing a common programming interface. To add a specific excel file format
+to you application, all you need is to install an extra pyexcel plugin. No code change
+to your application. Looking at the community, this library and its associated ones try
+to become a small and easy to install alternative to Pandas.
 
-.. note::
- Here is a typical conversation between the developer and the user::
-
-  User: "I have uploaded an excel file"
-        "but your application says un-supported file format"
-  Developer: "Did you upload an xlsx file or a csv file?"
-  User: "Well, I am not sure. I saved the data using "
-        "Microsoft Excel. Surely, it must be in an excel format."
 
 The highlighted features are:
 
 #. excel data import into and export from databases
-#. turn uploaded excel file directly into Python data struture
+#. turn uploaded excel file directly into Python data structure
 #. pass Python data structures as an excel file download
 #. provide data persistence as an excel file in server side
 #. supports csv, tsv, csvz, tsvz by default and other formats are supported via
    the following plugins:
 
 .. _file-format-list:
+.. _a-map-of-plugins-and-file-formats:
 
 .. table:: A list of file formats supported by external plugins
 
-   ================ ========================================
-   Plugins          Supported file formats
-   ================ ========================================
-   `pyexcel-xls`_   xls, xlsx(r), xlsm(r)
-   `pyexcel-xlsx`_  xlsx
-   `pyexcel-ods3`_  ods (python 2.6, 2.7, 3.3, 3.4)
-   `pyexcel-ods`_   ods (python 2.6, 2.7)
-   `pyexcel-text`_  (write only)json, rst, mediawiki, html
-                    latex, grid, pipe, orgtbl, plain simple
-   ================ ========================================
+   ================= ======================= ============= ==================
+   Package name      Supported file formats  Dependencies  Python versions
+   ================= ======================= ============= ==================
+   `pyexcel-io`_     csv, csvz [#f1]_, tsv,                2.6, 2.7, 3.3,
+                     tsvz [#f2]_                           3.4, 3.5,
+                                                           pypy, pypy3
+   `pyexcel-xls`_    xls, xlsx(read only),   `xlrd`_,      same as above
+                     xlsm(read only)         `xlwt`_
+   `pyexcel-xlsx`_   xlsx                    `openpyxl`_   same as above
+   `pyexcel-xlsxw`_  xlsx(write only)        `XlsxWriter`_ same as above
+   `pyexcel-ods3`_   ods                     `ezodf`_,     2.6, 2.7, 3.3, 3.4
+                                             lxml          3.5
+   `pyexcel-ods`_    ods                     `odfpy`_      same as above
+   `pyexcel-text`_   (write only)json, rst,  `tabulate`_   2.6, 2.7, 3.3, 3.4
+                     mediawiki, html,                      3.5, pypy, pypy3
+                     latex, grid, pipe,
+                     orgtbl, plain simple
+   ================= ======================= ============= ==================
 
+.. _pyexcel-io: https://github.com/pyexcel/pyexcel-io
 .. _pyexcel-xls: https://github.com/pyexcel/pyexcel-xls
 .. _pyexcel-xlsx: https://github.com/pyexcel/pyexcel-xlsx
 .. _pyexcel-ods: https://github.com/pyexcel/pyexcel-ods
 .. _pyexcel-ods3: https://github.com/pyexcel/pyexcel-ods3
-.. _pyexcel-text: https://github.com/pyexcel/pyexcel-text
+.. _pyexcel-xlsxw: https://github.com/pyexcel/pyexcel-xlsxw
 
-This library makes infomation processing involving various excel files as easy as
+.. _xlrd: https://github.com/python-excel/xlrd
+.. _xlwt: https://github.com/python-excel/xlwt
+.. _openpyxl: https://bitbucket.org/openpyxl/openpyxl
+.. _XlsxWriter: https://github.com/jmcnamara/XlsxWriter
+.. _ezodf: https://github.com/T0ha/ezodf
+.. _odfpy: https://github.com/eea/odfpy
+
+.. _pyexcel-text: https://github.com/pyexcel/pyexcel-text
+.. _tabulate: https://bitbucket.org/astanin/python-tabulate
+
+.. rubric:: Footnotes
+
+.. [#f1] zipped csv file
+.. [#f2] zipped tsv file
+
+
+This library makes information processing involving various excel files as easy as
 processing array, dictionary when processing file upload/download, data import into
 and export from SQL databases, information analysis and persistence. It uses
 **pyexcel** and its plugins:
@@ -73,21 +110,10 @@ and export from SQL databases, information analysis and persistence. It uses
 #. to provide the same interface for information persistence at server side: saving a uploaded excel file to and loading a saved excel file from file system.
 
 
-Known constraints
-==================
-
-Fonts, colors and charts are not supported.
 
 
 Installation
 ================================================================================
-
-Recently, pyexcel(0.2.2+) and its plugins(0.2.0+) started using newer version of setuptools. Please upgrade your setup tools before install latest pyexcel components:
-
-.. code-block:: bash
-
-    $ pip install --upgrade setuptools
-
 You can install it via pip:
 
 .. code-block:: bash
@@ -117,6 +143,60 @@ adding it to the pyramid.includes list::
     pyramid.includes = pyramid_excel
 
 
+
+Development guide
+================================================================================
+
+Development steps for code changes
+
+#. git clone https://github.com/pyexcel/pyramid-excel.git
+#. cd pyramid-excel
+
+Upgrade your setup tools and pip. They are needed for development and testing only:
+
+#. pip install --upgrade setuptools "pip==7.1"
+
+Then install relevant development requirements:
+
+#. pip install -r rnd_requirements.txt # if such a file exists
+#. pip install -r requirements.txt
+#. pip install -r tests/requirements.txt
+
+
+In order to update test environment, and documentation, additional setps are
+required:
+
+#. pip install moban
+#. git clone https://github.com/pyexcel/pyexcel-commons.git
+#. make your changes in `.moban.d` directory, then issue command `moban`
+
+What is rnd_requirements.txt
+-------------------------------
+
+Usually, it is created when a dependent library is not released. Once the dependecy is installed(will be released), the future version of the dependency in the requirements.txt will be valid.
+
+What is pyexcel-commons
+---------------------------------
+
+Many information that are shared across pyexcel projects, such as: this developer guide, license info, etc. are stored in `pyexcel-commons` project.
+
+What is .moban.d
+---------------------------------
+
+`.moban.d` stores the specific meta data for the library.
+
+How to test your contribution
+------------------------------
+
+Although `nose` and `doctest` are both used in code testing, it is adviable that unit tests are put in tests. `doctest` is incorporated only to make sure the code examples in documentation remain valid across different development releases.
+
+On Linux/Unix systems, please launch your tests like this::
+
+    $ make test
+
+On Windows systems, please issue this command::
+
+    > test.bat
 
 License
 ================================================================================

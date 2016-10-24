@@ -3,14 +3,27 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to pyramid-excel's documentation!
+`pyramid-excel` - Let you focus on data, instead of file formats
 ================================================================================
 
 :Author: C.W.
+:Source code: http://github.com/pyexcel/pyramid-excel.git
 :Issues: http://github.com/pyexcel/pyramid-excel/issues
 :License: New BSD License
-:Version: |version|
+:Development: |release|
+:Released: |version|
 :Generated: |today|
+
+Here is a typical conversation between the developer and the user::
+
+ User: "I have uploaded an excel file"
+       "but your application says un-supported file format"
+ Developer: "Did you upload an xlsx file or a csv file?"
+ User: "Well, I am not sure. I saved the data using "
+       "Microsoft Excel. Surely, it must be in an excel format."
+ Developer: "OK. Here is the thing. I were not told to support"
+            "all available excel formats in day 1. Live with it"
+            "or delay the project x number of days."
 
 **pyramid-excel** is based on `pyexcel <https://github.com/pyexcel/pyexcel>`_ and makes
 it easy to consume/produce information stored in excel files over HTTP protocol as
@@ -20,51 +33,72 @@ lets you focus on data in Pyramid based web development, instead of file formats
 
 The idea originated from the common usability problem when developing an excel file
 driven web applications for non-technical office workers: such as office assistant,
-human resource administrator. It is an un-deniable fact that not all people know the
+human resource administrator. The fact is that not all people know the
 difference among various excel formats: csv, xls, xlsx. Instead of training those people
 about file formats, this library helps web developers to handle most of the excel file
-formats by providing a common programming interface.
+formats by providing a common programming interface. To add a specific excel file format
+to you application, all you need is to install an extra pyexcel plugin. No code change
+to your application. Looking at the community, this library and its associated ones try
+to become a small and easy to install alternative to Pandas.
 
-.. note::
- Here is a typical conversation between the developer and the user::
-
-  User: "I have uploaded an excel file"
-        "but your application says un-supported file format"
-  Developer: "Did you upload an xlsx file or a csv file?"
-  User: "Well, I am not sure. I saved the data using "
-        "Microsoft Excel. Surely, it must be in an excel format."
 
 The highlighted features are:
 
 #. excel data import into and export from databases
-#. turn uploaded excel file directly into Python data struture
+#. turn uploaded excel file directly into Python data structure
 #. pass Python data structures as an excel file download
 #. provide data persistence as an excel file in server side
 #. supports csv, tsv, csvz, tsvz by default and other formats are supported via
    the following plugins:
 
 .. _file-format-list:
+.. _a-map-of-plugins-and-file-formats:
 
 .. table:: A list of file formats supported by external plugins
 
-   ================ ========================================
-   Plugins          Supported file formats
-   ================ ========================================
-   `pyexcel-xls`_   xls, xlsx(r), xlsm(r)
-   `pyexcel-xlsx`_  xlsx
-   `pyexcel-ods3`_  ods (python 2.6, 2.7, 3.3, 3.4)
-   `pyexcel-ods`_   ods (python 2.6, 2.7)
-   `pyexcel-text`_  (write only)json, rst, mediawiki, html
-                    latex, grid, pipe, orgtbl, plain simple
-   ================ ========================================
+   ================= ======================= ============= ==================
+   Package name      Supported file formats  Dependencies  Python versions
+   ================= ======================= ============= ==================
+   `pyexcel-io`_     csv, csvz [#f1]_, tsv,                2.6, 2.7, 3.3,
+                     tsvz [#f2]_                           3.4, 3.5,
+                                                           pypy, pypy3
+   `pyexcel-xls`_    xls, xlsx(read only),   `xlrd`_,      same as above
+                     xlsm(read only)         `xlwt`_
+   `pyexcel-xlsx`_   xlsx                    `openpyxl`_   same as above
+   `pyexcel-xlsxw`_  xlsx(write only)        `XlsxWriter`_ same as above
+   `pyexcel-ods3`_   ods                     `ezodf`_,     2.6, 2.7, 3.3, 3.4
+                                             lxml          3.5
+   `pyexcel-ods`_    ods                     `odfpy`_      same as above
+   `pyexcel-text`_   (write only)json, rst,  `tabulate`_   2.6, 2.7, 3.3, 3.4
+                     mediawiki, html,                      3.5, pypy, pypy3
+                     latex, grid, pipe,
+                     orgtbl, plain simple
+   ================= ======================= ============= ==================
 
+.. _pyexcel-io: https://github.com/pyexcel/pyexcel-io
 .. _pyexcel-xls: https://github.com/pyexcel/pyexcel-xls
 .. _pyexcel-xlsx: https://github.com/pyexcel/pyexcel-xlsx
 .. _pyexcel-ods: https://github.com/pyexcel/pyexcel-ods
 .. _pyexcel-ods3: https://github.com/pyexcel/pyexcel-ods3
-.. _pyexcel-text: https://github.com/pyexcel/pyexcel-text
+.. _pyexcel-xlsxw: https://github.com/pyexcel/pyexcel-xlsxw
 
-This library makes infomation processing involving various excel files as easy as
+.. _xlrd: https://github.com/python-excel/xlrd
+.. _xlwt: https://github.com/python-excel/xlwt
+.. _openpyxl: https://bitbucket.org/openpyxl/openpyxl
+.. _XlsxWriter: https://github.com/jmcnamara/XlsxWriter
+.. _ezodf: https://github.com/T0ha/ezodf
+.. _odfpy: https://github.com/eea/odfpy
+
+.. _pyexcel-text: https://github.com/pyexcel/pyexcel-text
+.. _tabulate: https://bitbucket.org/astanin/python-tabulate
+
+.. rubric:: Footnotes
+
+.. [#f1] zipped csv file
+.. [#f2] zipped tsv file
+
+
+This library makes information processing involving various excel files as easy as
 processing array, dictionary when processing file upload/download, data import into
 and export from SQL databases, information analysis and persistence. It uses
 **pyexcel** and its plugins:
@@ -76,13 +110,6 @@ and export from SQL databases, information analysis and persistence. It uses
 
 Installation
 -------------------
-
-
-Recently, pyexcel(0.2.2+) and its plugins(0.2.0+) started using newer version of setuptools. Please upgrade your setup tools before install latest pyexcel components:
-
-.. code-block:: bash
-
-    $ pip install --upgrade setuptools
 
 You can install it via pip:
 
@@ -545,11 +572,4 @@ Response methods
    :param file_type: same as :meth:`~pyramid_excel.make_response`
    :param status: same as :meth:`~pyramid_excel.make_response`
    :param file_name: same as :meth:`~pyramid_excel.make_response`
-
-Indices and tables
---------------------
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
 
