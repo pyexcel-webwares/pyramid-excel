@@ -37,13 +37,7 @@ class TestExcelResponse:
                                                        download_file_type))
                 sheet = pe.Sheet(self.data)
                 io = sheet.save_to_memory(upload_file_type)
-                if not PY2:
-                    if isinstance(io, BytesIO):
-                        content = io
-                    else:
-                        content = io.encode('utf-8')
-                else:
-                    content = io
+                content = io
                 response = self.app.post(
                     '/switch/%s' % download_file_type,
                     upload_files=[('file', file_name, content)],
