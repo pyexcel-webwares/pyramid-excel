@@ -38,7 +38,7 @@ class TestExcelResponse:
                 sheet = pe.Sheet(self.data)
                 io = sheet.save_to_memory(upload_file_type)
                 if not PY2:
-                    if isinstance(io, BytesIO):
+                    if isinstance(io, bytes):
                         content = io
                     else:
                         content = io.encode('utf-8')
