@@ -1,5 +1,5 @@
 import pyexcel as pe
-from _compact import BytesIO, PY2
+from _compact import PY2
 from nose.tools import eq_
 
 _XLSX_MIME = (
