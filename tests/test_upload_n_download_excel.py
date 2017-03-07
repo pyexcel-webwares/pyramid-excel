@@ -36,7 +36,7 @@ class TestExcelResponse:
                 print("Uploading %s Downloading %s" % (upload_file_type,
                                                        download_file_type))
                 sheet = pe.Sheet(self.data)
-                io = sheet.save_to_memory(upload_file_type)
+                io = sheet.save_to_memory(upload_file_type).getvalue()
                 if not PY2:
                     if isinstance(io, bytes):
                         content = io
