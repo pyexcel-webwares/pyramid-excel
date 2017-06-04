@@ -1,5 +1,5 @@
 import pyexcel as pe
-from _compact import BytesIO, PY2
+from _compact import PY2
 from nose.tools import eq_
 
 _XLSX_MIME = (
@@ -36,15 +36,14 @@ class TestExcelResponse:
                 print("Uploading %s Downloading %s" % (upload_file_type,
                                                        download_file_type))
                 sheet = pe.Sheet(self.data)
-                io = sheet.save_to_memory(upload_file_type)
-                io.seek(0)
+                io = sheet.save_to_memory(upload_file_type).getvalue()
                 if not PY2:
-                    if isinstance(io, BytesIO):
-                        content = io.getvalue()
+                    if isinstance(io, bytes):
+                        content = io
                     else:
-                        content = io.getvalue().encode('utf-8')
+                        content = io.encode('utf-8')
                 else:
-                    content = io.getvalue()
+                    content = io
                 response = self.app.post(
                     '/switch/%s' % download_file_type,
                     upload_files=[('file', file_name, content)],

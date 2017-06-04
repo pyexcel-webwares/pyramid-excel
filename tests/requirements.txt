@@ -5,8 +5,9 @@ flake8
 SQLAlchemy
 transaction
 zope.sqlalchemy
-webtest
+webtest==2.0.23;python_version<"3"
+webtest;python_version>="3"
 lxml
-pyexcel-ods3>=0.1.0
+pyexcel-ods>=0.1.0
 pyexcel-xls>=0.1.0
 pyexcel-xlsx>=0.1.0
