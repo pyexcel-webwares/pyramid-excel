@@ -1,10 +1,20 @@
 Change log
 ================================================================================
 
-unlreased
+0.0.4 - 29.06.2017
+--------------------------------------------------------------------------------
+
+Added
+********************************************************************************
+
+#. `issue 3 <https://github.com/pyexcel/django-excel/issues/3>`_, Support
+   unicode code as download file name
+
+0.0.3 - 16.03.2016
 --------------------------------------------------------------------------------
 
 Updated
 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-#. use pyexcel-webio 0.0.7 which uses pyexcel 0.2.2
+#. update dependencies on pyramid>=1.4.9, pyexcel-webio>=0.0.6
+#. use moban to separate common texts from package specific info
