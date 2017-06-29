@@ -11,7 +11,7 @@ PY26 = PY2 and sys.version_info[1] < 7
 NAME = 'pyramid-excel'
 AUTHOR = 'C.W.'
 VERSION = '0.0.4'
-EMAIL = 'wangc_2011 (at) hotmail.com'
+EMAIL = 'wangc_2011@hotmail.com'
 LICENSE = 'New BSD'
 DESCRIPTION = (
     'A pyramid extension that provides one application programming interfac' +
@@ -37,6 +37,12 @@ CLASSIFIERS = [
     'Programming Language :: Python',
     'License :: OSI Approved :: BSD License',
     'Intended Audience :: Developers',
+    'Programming Language :: Python :: 2.6',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
     'Development Status :: 3 - Alpha',
     'Environment :: Web Environment',
     'Topic :: Internet :: WWW/HTTP',

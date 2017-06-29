@@ -56,30 +56,34 @@ The highlighted features are:
 
 .. table:: A list of file formats supported by external plugins
 
-   ================= ======================= ============= ==================
-   Package name      Supported file formats  Dependencies  Python versions
-   ================= ======================= ============= ==================
-   `pyexcel-io`_     csv, csvz [#f1]_, tsv,                2.6, 2.7, 3.3,
-                     tsvz [#f2]_                           3.4, 3.5,
-                                                           pypy
-   `pyexcel-xls`_    xls, xlsx(read only),   `xlrd`_,      same as above
-                     xlsm(read only)         `xlwt`_
-   `pyexcel-xlsx`_   xlsx                    `openpyxl`_   same as above
-   `pyexcel-xlsxw`_  xlsx(write only)        `XlsxWriter`_ same as above
-   `pyexcel-ods3`_   ods                     `ezodf`_,     2.6, 2.7, 3.3, 3.4
-                                             lxml          3.5
-   `pyexcel-ods`_    ods                     `odfpy`_      same as above
-   `pyexcel-text`_   (write only)json, rst,  `tabulate`_   2.6, 2.7, 3.3, 3.4
-                     mediawiki, html,                      3.5, pypy, pypy3
-                     latex, grid, pipe,
-                     orgtbl, plain simple
-   ================= ======================= ============= ==================
+   ======================== ======================= =============== ==================
+   Package name              Supported file formats  Dependencies   Python versions
+   ======================== ======================= =============== ==================
+   `pyexcel-io`_            csv, csvz [#f1]_, tsv,                  2.6, 2.7, 3.3,
+                            tsvz [#f2]_                             3.4, 3.5, 3.6
+                                                                    pypy
+   `pyexcel-xls`_           xls, xlsx(read only),   `xlrd`_,        same as above
+                            xlsm(read only)         `xlwt`_
+   `pyexcel-xlsx`_          xlsx                    `openpyxl`_     same as above
+   `pyexcel-xlsxw`_         xlsx(write only)        `XlsxWriter`_   same as above
+   `pyexcel-ods3`_          ods                     `ezodf`_,       2.6, 2.7, 3.3, 3.4
+                                                    lxml            3.5, 3.6
+   `pyexcel-ods`_           ods                     `odfpy`_        same as above
+   `pyexcel-odsr`_          ods(read only)          lxml            same as above
+   `pyexcel-text`_          (write only)json, rst,  `tabulate`_     2.6, 2.7, 3.3, 3.4
+                            mediawiki, html,                        3.5, pypy, pypy3
+                            latex, grid, pipe,
+                            orgtbl, plain simple
+   `pyexcel-handsontable`_  handsontable in html    `handsontable`_ same as above
+   `pyexcel-pygal`_         svg chart               `pygal`_        same as above [#f3]_
+   ======================== ======================= =============== ==================
 
 .. _pyexcel-io: https://github.com/pyexcel/pyexcel-io
 .. _pyexcel-xls: https://github.com/pyexcel/pyexcel-xls
 .. _pyexcel-xlsx: https://github.com/pyexcel/pyexcel-xlsx
 .. _pyexcel-ods: https://github.com/pyexcel/pyexcel-ods
 .. _pyexcel-ods3: https://github.com/pyexcel/pyexcel-ods3
+.. _pyexcel-odsr: https://github.com/pyexcel/pyexcel-odsr
 .. _pyexcel-xlsxw: https://github.com/pyexcel/pyexcel-xlsxw
 
 .. _xlrd: https://github.com/python-excel/xlrd
@@ -91,6 +95,21 @@ The highlighted features are:
 
 .. _pyexcel-text: https://github.com/pyexcel/pyexcel-text
 .. _tabulate: https://bitbucket.org/astanin/python-tabulate
+.. _pyexcel-handsontable: https://github.com/pyexcel/pyexcel-handsontable
+.. _handsontable: https://cdnjs.com/libraries/handsontable
+.. _pyexcel-pygal: https://github.com/pyexcel/pyexcel-chart
+.. _pygal: https://github.com/Kozea/pygal
+.. _pyexcel-matplotlib: https://github.com/pyexcel/pyexcel-matplotlib
+.. _matplotlib: https://matplotlib.org
+
+.. [#f3] coming soon
+
+In order to manage the list of plugins installed, you need to use pip to add or remove
+a plugin. When you use virtualenv, you can have different plugins per virtual
+environment. In the situation where you have multiple plugins that does the same thing
+in your environment, you need to tell pyexcel which plugin to use per function call.
+For example, pyexcel-ods and pyexcel-odsr, and you want to get_array to use pyexcel-odsr.
+You need to append get_array(..., library='pyexcel-odsr').
 
 .. rubric:: Footnotes
 
@@ -122,7 +141,7 @@ or clone it and install it:
 
 .. code-block:: bash
 
-    $ git clone http://github.com/pyexcel/pyramid-excel.git
+    $ git clone https://github.com/pyexcel/pyramid-excel.git
     $ cd pyramid-excel
     $ python setup.py install
 
@@ -212,6 +231,23 @@ And you can start the tiny server by this command, assuming you have save it as 
         $ pserve development.ini
         Starting server in PID 9852.
         serving on http://127.0.0.1:5000
+
+
+
+Support the project
+-----------------------
+
+If your company has embedded pyexcel and its components into a revenue generating
+product, please `support me on patreon <https://www.patreon.com/bePatron?u=5537627>`_ to
+maintain the project and develop it further.
+
+If you are an individual, you are welcome to support me too on patreon and for however long
+you feel like to. As a patreon, you will receive
+`early access to pyexcel related contents <https://www.patreon.com/pyexcel/posts>`_.
+
+With your financial support, I will be able to invest
+a little bit more time in coding, documentation and writing interesting posts.
+
 
 
 More excel file formats

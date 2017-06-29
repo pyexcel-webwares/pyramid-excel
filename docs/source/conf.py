@@ -1,4 +1,9 @@
 # -*- coding: utf-8 -*-
+DESCRIPTION = (
+    'A pyramid extension that provides one application programming interfac' +
+    'e to read and write data in different excel file formats' +
+    ''
+)
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.doctest',
@@ -7,7 +12,7 @@ extensions = [
 ]
 
 intersphinx_mapping = {
-    'pyexcel': ('http://pyexcel.readthedocs.org/en/latest/', None)
+    'pyexcel': ('http://pyexcel.readthedocs.org/en/latest/', None),
 }
 spelling_word_list_filename = 'spelling_wordlist.txt'
 templates_path = ['_templates']
@@ -15,7 +20,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 project = u'pyramid-excel'
-copyright = u'2015-2016 Onni Software Ltd.'
+copyright = u'2015-2017 Onni Software Ltd.'
 version = '0.0.3'
 release = '0.0.4'
 exclude_patterns = []
@@ -27,15 +32,19 @@ html_static_path = ['_static']
 htmlhelp_basename = 'pyramid-exceldoc'
 latex_elements = {}
 latex_documents = [
-    ('index', 'pyramid-excel.tex', u'pyramid-excel Documentation',
+    ('index', 'pyramid-excel.tex',
+     'pyramid-excel Documentation',
      'Onni Software Ltd.', 'manual'),
 ]
 man_pages = [
-    ('index', 'pyramid-excel', u'pyramid-excel Documentation',
+    ('index', 'pyramid-excel',
+     'pyramid-excel Documentation',
      [u'Onni Software Ltd.'], 1)
 ]
 texinfo_documents = [
-    ('index', 'pyramid-excel', u'pyramid-excel Documentation',
-     'Onni Software Ltd.', 'pyramid-excel', 'One line description of project.',
+    ('index', 'pyramid-excel',
+     'pyramid-excel Documentation',
+     'Onni Software Ltd.', 'pyramid-excel',
+     DESCRIPTION,
      'Miscellaneous'),
 ]
