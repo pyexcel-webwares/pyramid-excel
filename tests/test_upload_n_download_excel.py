@@ -81,13 +81,13 @@ class TestExcelResponse:
 
     def _download_and_verify_file_name(self, test_file_name):
         for file_type in FILE_TYPE_MIME_TABLE.keys():
+            url_encoded_file_name = urllib_quote(test_file_name)
             response = self.app.get(
-                '/download/%s/%s' % (test_file_name, file_type))
+                '/download/%s/%s' % (url_encoded_file_name, file_type))
             eq_(response.content_type,
                 FILE_TYPE_MIME_TABLE[file_type])
-            url_encoded_file_name = urllib_quote(test_file_name)
             expected = (
                 "attachment; filename=%s.%s;filename*=utf-8''%s.%s"
                 % (url_encoded_file_name, file_type,
                    url_encoded_file_name, file_type))
-            assert response.content_disposition == expected
+            eq_(response.content_disposition, expected)
