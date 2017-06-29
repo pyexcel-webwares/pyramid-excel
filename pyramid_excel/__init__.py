@@ -22,6 +22,14 @@ from pyexcel_webio import (  # noqa
     make_response_from_query_sets,
     make_response_from_tables
 )
+try:
+    # if in py2
+    from urllib import quote as urllib_quote
+    PY2_VERSION = True
+except ImportError:
+    # else (aka in py3)
+    from urllib.parse import quote as urllib_quote # flake8: noqa
+    PY2_VERSION = False
 
 
 class ExcelRequestFactory(webio.ExcelInputInMultiDict, Request):
@@ -54,7 +62,13 @@ def _make_response(content, content_type, status, file_name=None):
     """
     response = Response(content, content_type=content_type, status=status)
     if file_name:
-        response.content_disposition = "attachment; filename=%s" % (file_name)
+        if PY2_VERSION and isinstance(file_name, unicode):
+            file_name = file_name.encode('utf-8')
+            url_encoded_file_name = urllib_quote(file_name)
+            response.content_disposition = (
+                "attachment; filename=%s;filename*=utf-8''%s"
+                % (url_encoded_file_name, url_encoded_file_name)
+            )
     return response
 
 
