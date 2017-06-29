@@ -21,7 +21,7 @@ master_doc = 'index'
 
 project = u'pyramid-excel'
 copyright = u'2015-2017 Onni Software Ltd.'
-version = '0.0.3'
+version = '0.0.4'
 release = '0.0.4'
 exclude_patterns = []
 pygments_style = 'sphinx'
