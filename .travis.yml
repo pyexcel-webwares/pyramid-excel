@@ -4,11 +4,12 @@ notifications:
   email: false
 env:
   - PYRAMID_VERSION=1.4.9
-  - PYRAMID_VERSION=1.5.7
+  - PYRAMID_VERSION=1.5.8
   - PYRAMID_VERSION=1.6.1
-  - PYRAMID_VERSION=1.7
+  - PYRAMID_VERSION=1.7.6
+  - PYRAMID_VERSION=1.8.4
+  - PYRAMID_VERSION=1.9
 python:
-  - 2.6
   - 2.7
   - 3.3
   - 3.4

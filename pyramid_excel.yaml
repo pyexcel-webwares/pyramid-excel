@@ -1,6 +1,7 @@
 overrides: "pyexcel.yaml"
 name: "pyramid-excel"
 version: 0.0.4
+current_version: 0.0.4
 release: 0.0.3
 webframework: Pyramid
 dependencies:
