@@ -19,7 +19,7 @@ DESCRIPTION = (
     ''
 )
 URL = 'https://github.com/pyexcel/pyramid-excel'
-DOWNLOAD_URL = '%s/archive/0.0.4.tar.gz' % URL
+DOWNLOAD_URL = '%s/archive/0.0.5.tar.gz' % URL
 FILES = ['README.rst', 'CHANGELOG.rst']
 KEYWORDS = [
     'API',
