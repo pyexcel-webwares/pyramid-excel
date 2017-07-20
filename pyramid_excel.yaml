@@ -1,19 +1,19 @@
 overrides: "pyexcel.yaml"
 name: "pyramid-excel"
-version: 0.0.4
-current_version: 0.0.4
+version: 0.0.5
+current_version: 0.0.5
 release: 0.0.4
 webframework: Pyramid
 dependencies:
-  - pyexcel>=0.2.2
-  - pyexcel-webio>=0.0.7
+  - pyexcel>=0.5.1.1
+  - pyexcel-webio>=0.1.2
   - Pyramid>=1.4.9
 extra_dependencies:
   - xls:
-    - pyexcel-xls>=0.1.0
+    - pyexcel-xls>=0.4.0
   - xlsx:
-    - pyexcel-xlsx>=0.1.0
+    - pyexcel-xlsx>=0.4.0
   - ods:
-    - pyexcel-ods3>=0.1.0
+    - pyexcel-ods3>=0.4.0
 description: |
   A pyramid extension that provides one application programming interface to read and write data in different excel file formats

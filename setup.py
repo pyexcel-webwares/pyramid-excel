@@ -10,7 +10,7 @@ PY26 = PY2 and sys.version_info[1] < 7
 
 NAME = 'pyramid-excel'
 AUTHOR = 'C.W.'
-VERSION = '0.0.4'
+VERSION = '0.0.5'
 EMAIL = 'wangc_2011@hotmail.com'
 LICENSE = 'New BSD'
 DESCRIPTION = (
@@ -57,17 +57,17 @@ CLASSIFIERS = [
 ]
 
 INSTALL_REQUIRES = [
-    'pyexcel>=0.2.2',
-    'pyexcel-webio>=0.0.7',
+    'pyexcel>=0.5.1.1',
+    'pyexcel-webio>=0.1.2',
     'Pyramid>=1.4.9',
 ]
 
 
 PACKAGES = find_packages(exclude=['ez_setup', 'examples', 'tests'])
 EXTRAS_REQUIRE = {
-    'xls': ['pyexcel-xls>=0.1.0'],
-    'xlsx': ['pyexcel-xlsx>=0.1.0'],
-    'ods': ['pyexcel-ods3>=0.1.0'],
+    'xls': ['pyexcel-xls>=0.4.0'],
+    'xlsx': ['pyexcel-xlsx>=0.4.0'],
+    'ods': ['pyexcel-ods3>=0.4.0'],
 }
 
 
