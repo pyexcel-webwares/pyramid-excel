@@ -76,6 +76,9 @@ The highlighted features are:
    `pyexcel-handsontable`_  handsontable in html    `handsontable`_ same as above
    `pyexcel-pygal`_         svg chart               `pygal`_        2.7, 3.3, 3.4, 3.5
                                                                     3.6, pypy
+   `pyexcel-sortable`_      sortable table in html  `csvtotable`_   same as above
+   `pyexcel-gantt`_         gantt chart in html     `frappe-gantt`_ except pypy, same
+                                                                    as above
    ======================== ======================= =============== ==================
 
 .. _pyexcel-io: https://github.com/pyexcel/pyexcel-io
@@ -101,7 +104,10 @@ The highlighted features are:
 .. _pygal: https://github.com/Kozea/pygal
 .. _pyexcel-matplotlib: https://github.com/pyexcel/pyexcel-matplotlib
 .. _matplotlib: https://matplotlib.org
-
+.. _pyexcel-sortable: https://github.com/pyexcel/pyexcel-sortable
+.. _csvtotable: https://github.com/vividvilla/csvtotable
+.. _pyexcel-gantt: https://github.com/pyexcel/pyexcel-gantt
+.. _frappe-gantt: https://github.com/frappe/gantt
 
 In order to manage the list of plugins installed, you need to use pip to add or remove
 a plugin. When you use virtualenv, you can have different plugins per virtual
@@ -230,6 +236,8 @@ And you can start the tiny server by this command, assuming you have save it as 
         $ pserve development.ini
         Starting server in PID 9852.
         serving on http://127.0.0.1:5000
+
+
 
 
 

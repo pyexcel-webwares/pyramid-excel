@@ -72,11 +72,8 @@ def _make_response(content, content_type, status, file_name=None):
     return response
 
 
-# set up webio
-webio.ExcelResponse = _make_response
-
-
 def includeme(config):
     """ pyramid_excel extension
     """
+    webio.init_webio(_make_response)
     config.set_request_factory(ExcelRequestFactory)
