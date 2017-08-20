@@ -15,5 +15,12 @@ extra_dependencies:
     - pyexcel-xlsx>=0.4.0
   - ods:
     - pyexcel-ods3>=0.4.0
+keywords:
+  - API
+  - Pyramid
+  - xls
+  - xlsx
+  - ods
+  - csv
 description: |
   A pyramid extension that provides one application programming interface to read and write data in different excel file formats
