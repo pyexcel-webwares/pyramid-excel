@@ -5,11 +5,11 @@ pyramid-excel - Let you focus on data, instead of file formats
 .. image:: https://raw.githubusercontent.com/pyexcel/pyexcel.github.io/master/images/patreon.png
    :target: https://www.patreon.com/pyexcel
 
-.. image:: https://api.travis-ci.org/pyexcel/pyramid-excel.svg?branch=master
-   :target: http://travis-ci.org/pyexcel/pyramid-excel
+.. image:: https://api.travis-ci.org/pyexcel-webwares/pyramid-excel.svg?branch=master
+   :target: http://travis-ci.org/pyexcel-webwares/pyramid-excel
 
-.. image:: https://codecov.io/gh/pyexcel/pyramid-excel/branch/master/graph/badge.svg
-   :target: https://codecov.io/gh/pyexcel/pyramid-excel
+.. image:: https://codecov.io/gh/pyexcel-webwares/pyramid-excel/branch/master/graph/badge.svg
+   :target: https://codecov.io/gh/pyexcel-webwares/pyramid-excel
 
 .. image:: https://img.shields.io/gitter/room/gitterHQ/gitter.svg
    :target: https://gitter.im/pyexcel/Lobby
@@ -217,7 +217,7 @@ or clone it and install it:
 
 .. code-block:: bash
 
-    $ git clone https://github.com/pyexcel/pyramid-excel.git
+    $ git clone https://github.com/pyexcel-webwares/pyramid-excel.git
     $ cd pyramid-excel
     $ python setup.py install
 

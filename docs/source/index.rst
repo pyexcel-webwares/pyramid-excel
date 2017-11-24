@@ -7,8 +7,8 @@
 ================================================================================
 
 :Author: C.W.
-:Source code: http://github.com/pyexcel/pyramid-excel.git
-:Issues: http://github.com/pyexcel/pyramid-excel/issues
+:Source code: http://github.com/pyexcel-webwares/pyramid-excel.git
+:Issues: http://github.com/pyexcel-webwares/pyramid-excel/issues
 :License: New BSD License
 :Released: |version|
 :Generated: |today|
@@ -169,7 +169,7 @@ or clone it and install it:
 
 .. code-block:: bash
 
-    $ git clone https://github.com/pyexcel/pyramid-excel.git
+    $ git clone https://github.com/pyexcel-webwares/pyramid-excel.git
     $ cd pyramid-excel
     $ python setup.py install
 

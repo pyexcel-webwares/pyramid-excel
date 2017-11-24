@@ -1,5 +1,6 @@
 overrides: "pyexcel.yaml"
 name: "pyramid-excel"
+organisation: pyexcel-webwares
 version: 0.0.5
 current_version: 0.0.5
 release: 0.0.5

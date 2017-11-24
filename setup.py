@@ -17,7 +17,7 @@ DESCRIPTION = (
     'e to read and write data in different excel file formats' +
     ''
 )
-URL = 'https://github.com/pyexcel/pyramid-excel'
+URL = 'https://github.com/pyexcel-webwares/pyramid-excel'
 DOWNLOAD_URL = '%s/archive/0.0.5.tar.gz' % URL
 FILES = ['README.rst',  'CHANGELOG.rst']
 KEYWORDS = [
