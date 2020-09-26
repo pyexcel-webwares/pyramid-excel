@@ -24,6 +24,7 @@ test_dependencies:
   - SQLAlchemy
   - webtest
   - zope.sqlalchemy
+  - transaction
 keywords:
   - API
   - Pyramid
@@ -31,7 +32,6 @@ keywords:
   - xlsx
   - ods
   - csv
-  - transaction
 description: |
   A pyramid extension that provides one application programming interface to read and write data in different excel file formats
 lint_command: false

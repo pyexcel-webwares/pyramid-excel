@@ -16,3 +16,4 @@ lxml
 SQLAlchemy
 webtest
 zope.sqlalchemy
+transaction

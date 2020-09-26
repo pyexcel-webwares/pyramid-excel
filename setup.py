@@ -50,7 +50,6 @@ KEYWORDS = [
     "xlsx",
     "ods",
     "csv",
-    "transaction",
 ]
 
 CLASSIFIERS = [
