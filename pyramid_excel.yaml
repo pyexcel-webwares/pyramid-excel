@@ -36,3 +36,4 @@ description: |
   A pyramid extension that provides one application programming interface to read and write data in different excel file formats
 lint_command: false
 moban_command: false
+flake8_options: --ignore=F401,E402
