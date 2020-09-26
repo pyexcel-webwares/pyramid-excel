@@ -10,12 +10,12 @@ env:
   - PYRAMID_VERSION=1.7.6
   - PYRAMID_VERSION=1.8.4
   - PYRAMID_VERSION=1.9
+  - PYRAMID_VERSION=1.10.4
 python:
-  - 2.7
-  - 3.3
-  - 3.4
-  - 3.5
   - 3.6
+  - 3.7
+  - 3.8
+  - 3.9-dev
 
 stages:
   - test
