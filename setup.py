@@ -37,7 +37,7 @@ EMAIL = "info@pyexcel.org"
 LICENSE = "New BSD"
 DESCRIPTION = (
     "A pyramid extension that provides one application programming" +
-    "interface to read and write data in different excel file formats"
+    "interface to read and write data in different excel file formats "
 )
 URL = "https://github.com/pyexcel-webwares/pyramid-excel"
 DOWNLOAD_URL = "%s/archive/0.0.5.tar.gz" % URL
