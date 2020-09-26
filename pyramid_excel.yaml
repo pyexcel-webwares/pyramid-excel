@@ -16,6 +16,14 @@ extra_dependencies:
     - pyexcel-xlsx>=0.4.0
   - ods:
     - pyexcel-ods3>=0.4.0
+test_dependencies:
+  - pyexcel-ods
+  - pyexcel-xls
+  - pyexcel-xlsx
+  - lxml
+  - SQLAlchemy
+  - webtest
+  - zope.sqlalchemy
 keywords:
   - API
   - Pyramid
@@ -23,5 +31,6 @@ keywords:
   - xlsx
   - ods
   - csv
+  - transaction
 description: |
   A pyramid extension that provides one application programming interface to read and write data in different excel file formats
