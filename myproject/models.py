@@ -1,11 +1,13 @@
+
 import datetime
 
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import backref, relationship, scoped_session, sessionmaker
-from zope.sqlalchemy import ZopeTransactionExtension
+from zope.sqlalchemy import register
 
-DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
+DBSession = scoped_session(sessionmaker())
+register(DBSession)
 Base = declarative_base()
 
 
