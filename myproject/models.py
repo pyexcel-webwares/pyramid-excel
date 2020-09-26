@@ -1,37 +1,25 @@
-from sqlalchemy import (
-    Column,
-    Integer,
-    Text,
-    String,
-    ForeignKey,
-    DateTime
-    )
-
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship, backref
-from sqlalchemy.orm import (
-    scoped_session,
-    sessionmaker,
-    )
-
-from zope.sqlalchemy import ZopeTransactionExtension
 import datetime
+
+from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import backref, relationship, scoped_session, sessionmaker
+from zope.sqlalchemy import ZopeTransactionExtension
 
 DBSession = scoped_session(sessionmaker(extension=ZopeTransactionExtension()))
 Base = declarative_base()
 
 
 class Post(Base):
-    __tablename__ = 'post'
+    __tablename__ = "post"
     id = Column(Integer, primary_key=True)
     title = Column(String(80))
     body = Column(Text)
     pub_date = Column(DateTime)
 
-    category_id = Column(Integer, ForeignKey('category.id'))
-    category = relationship('Category',
-                            backref=backref('posts',
-                                            lazy='dynamic'))
+    category_id = Column(Integer, ForeignKey("category.id"))
+    category = relationship(
+        "Category", backref=backref("posts", lazy="dynamic")
+    )
 
     def __init__(self, title, body, category, pub_date=None):
         self.title = title
@@ -42,11 +30,11 @@ class Post(Base):
         self.category = category
 
     def __repr__(self):
-        return '<Post %r>' % self.title
+        return "<Post %r>" % self.title
 
 
 class Category(Base):
-    __tablename__ = 'category'
+    __tablename__ = "category"
     id = Column(Integer, primary_key=True)
     name = Column(String(50))
 
@@ -54,4 +42,4 @@ class Category(Base):
         self.name = name
 
     def __repr__(self):
-        return '<Category %r>' % self.name
+        return "<Category %r>" % self.name

@@ -1,11 +1,12 @@
 from wsgiref.simple_server import make_server
+
+# no longer you would need this import statement
+import pyexcel.ext.xls  # noqa
 from pyramid.config import Configurator
 from pyramid.response import Response
 from pyramid.view import view_config
-import pyramid_excel as excel
-# no longer you would need this import statement
-import pyexcel.ext.xls  # noqa
 
+import pyramid_excel as excel
 
 upload_form = """
 <!doctype html>
@@ -17,21 +18,21 @@ upload_form = """
 """
 
 
-@view_config(route_name='upload')
+@view_config(route_name="upload")
 def upload_view(request):
-    if request.method == 'POST':
-        data = request.get_array(field_name='file')
-        return excel.make_response_from_array(data, 'xls')
+    if request.method == "POST":
+        data = request.get_array(field_name="file")
+        return excel.make_response_from_array(data, "xls")
     return Response(upload_form)
 
 
 # insert database related code here
-if __name__ == '__main__':
+if __name__ == "__main__":
     config = Configurator()
-    config.include('pyramid_excel')
-    config.add_route('upload', '/upload')
+    config.include("pyramid_excel")
+    config.add_route("upload", "/upload")
     config.scan()
     app = config.make_wsgi_app()
-    server = make_server('0.0.0.0', 5000, app)
+    server = make_server("0.0.0.0", 5000, app)
     print("Listening on 0.0.0.0:5000")
     server.serve_forever()
