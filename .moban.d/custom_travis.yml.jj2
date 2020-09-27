@@ -15,5 +15,7 @@ python:
   - 3.7
   - 3.8
 {%endblock%}
-{% block custom_install %}  - pip install pyramid==$PYRAMID_VERSION
+{% block custom_install %}  - if [ -n "$PYRAMID_VERSION" ]; then
+      pip install pyramid==$PYRAMID_VERSION
+    fi
 {% endblock%}
