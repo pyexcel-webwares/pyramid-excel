@@ -219,6 +219,11 @@ and export from SQL databases, information analysis and persistence. It uses
 Tested Pyramid Versions
 ========================
 
+So far pyexcel-xls plugin does not work with Python 3.9 
+
+.. image:: https://img.shields.io/badge/pyramid-1.10.4-green.svg
+    :target: http://travis-ci.org/pyexcel/pyramid-excel
+
 .. image:: https://img.shields.io/badge/pyramid-1.9-green.svg
     :target: http://travis-ci.org/pyexcel/pyramid-excel
 
