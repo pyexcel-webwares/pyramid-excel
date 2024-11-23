@@ -6,7 +6,7 @@
 `pyramid-excel` - Let you focus on data, instead of file formats
 ================================================================================
 
-:Author: chfw
+:Author: C.W.
 :Source code: http://github.com/pyexcel-webwares/pyramid-excel.git
 :Issues: http://github.com/pyexcel-webwares/pyramid-excel/issues
 :License: New BSD License
@@ -60,7 +60,7 @@ The highlighted features are:
    ======================== ======================= =================
    Package name              Supported file formats  Dependencies
    ======================== ======================= =================
-   `pyexcel-io`_            csv, csvz [#f1]_, tsv,
+   `pyexcel-io`_            csv, csvz [#f1]_, tsv,  csvz,tsvz readers depends on `chardet`
                             tsvz [#f2]_
    `pyexcel-xls`_           xls, xlsx(read only),   `xlrd`_,
                             xlsm(read only)         `xlwt`_
@@ -89,9 +89,9 @@ The highlighted features are:
 Plugin shopping guide
 ------------------------
 
-Since 2020, all pyexcel-io plugins have dropped the support for python version
-lower than 3.6. If you want to use any python verions, please use pyexcel-io
-and its plugins version lower than 0.6.0.
+Since 2020, all pyexcel-io plugins have dropped the support for python versions
+which are lower than 3.6. If you want to use any of those Python versions, please use pyexcel-io
+and its plugins versions that are lower than 0.6.0.
 
 
 Except csv files, xls, xlsx and ods files are a zip of a folder containing a lot of
@@ -200,9 +200,9 @@ or clone it and install it:
     $ cd pyramid-excel
     $ python setup.py install
 
-Installation of individual plugins , please refer to individual plugin page. For example, if you need xls file support, please install pyexcel-xls::
+Installation of individual plugins , please refer to individual plugin page. For example, if you need xlsx file support, please install pyexcel-xlsx::
 
-        $ pip install pyexcel-xls
+        $ pip install pyexcel-xlsx
 
 
 Setup
@@ -295,18 +295,11 @@ Support the project
 -----------------------
 
 If your company has embedded pyexcel and its components into a revenue generating
-product, please support me on github, `patreon <https://www.patreon.com/bePatron?u=5537627>`_
-or `bounty source <https://salt.bountysource.com/teams/chfw-pyexcel>`_ to maintain
-the project and develop it further.
+product, please support me on github, or `patreon <https://www.patreon.com/bePatron?u=5537627>`_
+maintain the project and develop it further.
 
-If you are an individual, you are welcome to support me too and for however long
-you feel like. As my backer, you will receive
-`early access to pyexcel related contents <https://www.patreon.com/pyexcel/posts>`_.
-
-And your issues will get prioritized if you would like to become my patreon as `pyexcel pro user`.
-
-With your financial support, I will be able to invest
-a little bit more time in coding, documentation and writing interesting posts.
+With your financial support, I will be able to invest a little bit more time in coding,
+documentation and writing interesting posts.
 
 
 

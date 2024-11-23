@@ -31,7 +31,7 @@ except (ValueError, UnicodeError, locale.Error):
     locale.setlocale(locale.LC_ALL, "en_US.UTF-8")
 
 NAME = "pyramid-excel"
-AUTHOR = "chfw"
+AUTHOR = "C.W."
 VERSION = "0.0.5"
 EMAIL = "info@pyexcel.org"
 LICENSE = "New BSD"
@@ -41,7 +41,7 @@ DESCRIPTION = (
 )
 URL = "https://github.com/pyexcel-webwares/pyramid-excel"
 DOWNLOAD_URL = "%s/archive/0.0.5.tar.gz" % URL
-FILES = ["README.rst", "CHANGELOG.rst"]
+FILES = ["README.rst", "CONTRIBUTORS.rst", "CHANGELOG.rst"]
 KEYWORDS = [
     "python",
     "API",
@@ -76,6 +76,7 @@ CLASSIFIERS = [
     'Programming Language :: Python :: 3.3',
     'Programming Language :: Python :: 3.4',
     'Programming Language :: Python :: 3.5'
+
 ]
 
 
@@ -96,7 +97,7 @@ EXTRAS_REQUIRE = {
 PUBLISH_COMMAND = "{0} setup.py sdist bdist_wheel upload -r pypi".format(sys.executable)
 HERE = os.path.abspath(os.path.dirname(__file__))
 
-GS_COMMAND = ("gs pyramid-excel v0.0.5 " +
+GS_COMMAND = ("gease pyramid-excel v0.0.5 " +
               "Find 0.0.5 in changelog for more details")
 NO_GS_MESSAGE = ("Automatic github release is disabled. " +
                  "Please install gease to enable it.")
