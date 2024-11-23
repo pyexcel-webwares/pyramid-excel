@@ -135,7 +135,7 @@ Plugin shopping guide
 ------------------------
 
 Since 2020, all pyexcel-io plugins have dropped the support for python version
-lower than 3.6. If you want to use any python verions, please use pyexcel-io
+lower than 3.6. If you want to use any python versions, please use pyexcel-io
 and its plugins version lower than 0.6.0.
 
 
@@ -310,7 +310,7 @@ and update CHANGELOG.rst.
 .. note::
 
     As to rnd_requirements.txt, usually, it is created when a dependent
-    library is not released. Once the dependecy is installed
+    library is not released. Once the dependency is installed
     (will be released), the future
     version of the dependency in the requirements.txt will be valid.
 
@@ -318,7 +318,7 @@ and update CHANGELOG.rst.
 How to test your contribution
 ------------------------------
 
-Although `nose` and `doctest` are both used in code testing, it is adviable that unit tests are put in tests. `doctest` is incorporated only to make sure the code examples in documentation remain valid across different development releases.
+Although `nose` and `doctest` are both used in code testing, it is advisable that unit tests are put in tests. `doctest` is incorporated only to make sure the code examples in documentation remain valid across different development releases.
 
 On Linux/Unix systems, please launch your tests like this::
 
